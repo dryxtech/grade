@@ -1,0 +1,50 @@
+{
+  "id": "general.rating.five-star.us",
+  "description": "A rating system using 5 stars",
+  "category": "general",
+  "type": "rating",
+  "name": "five-star",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "5-STAR",
+      "startValue": 4,
+      "startValueInclusive": false,
+      "endValue": 5,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "4-STAR",
+      "startValue": 3,
+      "startValueInclusive": false,
+      "endValue": 4,
+      "endValueInclusive": true,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "3-STAR",
+      "startValue": 2,
+      "startValueInclusive": false,
+      "endValue": 3,
+      "endValueInclusive": true,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "2-STAR",
+      "startValue": 1,
+      "startValueInclusive": false,
+      "endValue": 2,
+      "endValueInclusive": true,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "1-STAR",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": true,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

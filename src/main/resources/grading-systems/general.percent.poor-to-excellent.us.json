@@ -1,0 +1,50 @@
+{
+  "id": "general.percent.poor-to-excellent.us",
+  "description": "A percent-based grading system consisting of five groups (Poor, Fair, Good, Very Good, and Excellent)",
+  "category": "general",
+  "type": "percent",
+  "name": "poor-to-excellent",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "Excellent",
+      "startValue": 80,
+      "startValueInclusive": true,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "Very Good",
+      "startValue": 60,
+      "startValueInclusive": true,
+      "endValue": 80,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "Good",
+      "startValue": 40,
+      "startValueInclusive": true,
+      "endValue": 60,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Fair",
+      "startValue": 20,
+      "startValueInclusive": true,
+      "endValue": 40,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Poor",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 20,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

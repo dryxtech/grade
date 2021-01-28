@@ -1,0 +1,26 @@
+{
+  "id": "general.binary.pass-fail.us",
+  "description": "A binary grading system (Pass or Fail)",
+  "category": "general",
+  "type": "binary",
+  "name": "pass-fail",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "PASS",
+      "startValue": 1,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "FAIL",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

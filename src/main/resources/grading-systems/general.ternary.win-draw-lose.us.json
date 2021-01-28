@@ -1,0 +1,34 @@
+{
+  "id": "general.ternary.win-draw-lose.us",
+  "description": "A ternary grading system (Win, Draw or Lose)",
+  "category": "general",
+  "type": "ternary",
+  "name": "win-draw-lose",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "WIN",
+      "startValue": 1,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "DRAW",
+      "startValue": -1,
+      "startValueInclusive": false,
+      "endValue": 1,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "LOSE",
+      "startValue": -1,
+      "startValueInclusive": true,
+      "endValue": -1,
+      "endValueInclusive": true,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

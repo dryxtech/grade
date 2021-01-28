@@ -1,0 +1,114 @@
+{
+  "id": "academic.gpa.standard-plus-minus.us",
+  "description": "A grade-point average grading system for US Academic Institutions consisting of five groups (A,B,C,D,F) extended with plus and minus ranges",
+  "category": "academic",
+  "type": "gpa",
+  "name": "standard-plus-minus",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "A+",
+      "startValue": 4.33,
+      "startValueInclusive": true,
+      "endValue": 4.33,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "A",
+      "startValue": 4.0,
+      "startValueInclusive": true,
+      "endValue": 4.33,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "A-",
+      "startValue": 3.67,
+      "startValueInclusive": true,
+      "endValue": 4.0,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "B+",
+      "startValue": 3.33,
+      "startValueInclusive": true,
+      "endValue": 3.67,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "B",
+      "startValue": 3.0,
+      "startValueInclusive": true,
+      "endValue": 3.33,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "B-",
+      "startValue": 2.67,
+      "startValueInclusive": true,
+      "endValue": 3.0,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "C+",
+      "startValue": 2.33,
+      "startValueInclusive": true,
+      "endValue": 2.67,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C",
+      "startValue": 2.0,
+      "startValueInclusive": true,
+      "endValue": 2.33,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C-",
+      "startValue": 1.67,
+      "startValueInclusive": true,
+      "endValue": 2.0,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "D+",
+      "startValue": 1.33,
+      "startValueInclusive": true,
+      "endValue": 1.67,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "D",
+      "startValue": 1.0,
+      "startValueInclusive": true,
+      "endValue": 1.33,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "D-",
+      "startValue": 0.67,
+      "startValueInclusive": true,
+      "endValue": 1.0,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "F",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 0.67,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

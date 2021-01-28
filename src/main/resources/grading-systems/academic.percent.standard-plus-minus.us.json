@@ -1,0 +1,114 @@
+{
+  "id": "academic.percent.standard-plus-minus.us",
+  "description": "A percent-based grading system for US Academic Institutions consisting of five groups (A,B,C,D,F) extended with plus and minus ranges",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard-plus-minus",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "A+",
+      "startValue": 97,
+      "startValueInclusive": true,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "A",
+      "startValue": 93,
+      "startValueInclusive": true,
+      "endValue": 97,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "A-",
+      "startValue": 90,
+      "startValueInclusive": true,
+      "endValue": 93,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "B+",
+      "startValue": 87,
+      "startValueInclusive": true,
+      "endValue": 90,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "B",
+      "startValue": 83,
+      "startValueInclusive": true,
+      "endValue": 87,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "B-",
+      "startValue": 80,
+      "startValueInclusive": true,
+      "endValue": 83,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "C+",
+      "startValue": 77,
+      "startValueInclusive": true,
+      "endValue": 80,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C",
+      "startValue": 73,
+      "startValueInclusive": true,
+      "endValue": 77,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C-",
+      "startValue": 70,
+      "startValueInclusive": true,
+      "endValue": 73,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "D+",
+      "startValue": 67,
+      "startValueInclusive": true,
+      "endValue": 70,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "D",
+      "startValue": 63,
+      "startValueInclusive": true,
+      "endValue": 67,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "D-",
+      "startValue": 60,
+      "startValueInclusive": true,
+      "endValue": 63,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "F",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 60,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "academic.percent.standard.us",
+  "description": "A percent-based grading system for US Academic Institutions consisting of five groups (A,B,C,D,F)",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "A",
+      "startValue": 90,
+      "startValueInclusive": true,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "B",
+      "startValue": 80,
+      "startValueInclusive": true,
+      "endValue": 90,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "C",
+      "startValue": 70,
+      "startValueInclusive": true,
+      "endValue": 80,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "D",
+      "startValue": 60,
+      "startValueInclusive": true,
+      "endValue": 70,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "F",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 60,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}
