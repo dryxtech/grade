@@ -21,18 +21,25 @@ import java.util.stream.Collectors;
  */
 public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
 
+    protected static final int DEFAULT_MAX_SIZE_LIMIT = 10_000;
+
     private final String name;
     private final List<T> grades;
+    private final int maxSizeLimit;
 
     public SimpleMemoryGradeBook() {
-        this(null, null);
+        this(null, null, DEFAULT_MAX_SIZE_LIMIT);
     }
 
     public SimpleMemoryGradeBook(final String name) {
-        this(name, null);
+        this(name, null, DEFAULT_MAX_SIZE_LIMIT);
     }
 
     public SimpleMemoryGradeBook(final String name, final List<T> grades) {
+        this(name, grades, DEFAULT_MAX_SIZE_LIMIT);
+    }
+
+    public SimpleMemoryGradeBook(final String name, final List<T> grades, int maxSizeLimit) {
 
         if (Objects.nonNull(name) && (name.trim().length() > 0)) {
             this.name = name;
@@ -41,10 +48,15 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
         }
 
         if (Objects.nonNull(grades)) {
+            if (grades.size() > maxSizeLimit) {
+                throw new IllegalArgumentException("maxSizeLimit arg is greater than grades arg current size");
+            }
             this.grades = grades;
         } else {
             this.grades = new ArrayList<>();
         }
+
+        this.maxSizeLimit = maxSizeLimit;
     }
 
     public String getName() {
@@ -55,6 +67,9 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
     public synchronized void record(final T grade) {
 
         Objects.requireNonNull(grade, "grade must not be null");
+        if (this.grades.size() >= maxSizeLimit) {
+            throw new IllegalStateException("grade book current size is at max limit. cannot record additional grade.");
+        }
 
         this.grades.add(grade);
     }
@@ -63,6 +78,9 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
     public synchronized void record(final Collection<T> grades) {
 
         Objects.requireNonNull(grades, "grades must not be null");
+        if ((this.grades.size() + grades.size()) > maxSizeLimit) {
+            throw new IllegalStateException("grade book current size + input grade count would exceed max limit. cannot record additional grades.");
+        }
 
         this.grades.addAll(grades);
     }
@@ -117,16 +135,18 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
             return false;
         }
         SimpleMemoryGradeBook<?> that = (SimpleMemoryGradeBook<?>) o;
-        return Objects.equals(name, that.name) && Objects.equals(grades, that.grades);
+        return Objects.equals(name, that.name) &&
+                Objects.equals(grades, that.grades) &&
+                Objects.equals(maxSizeLimit, that.maxSizeLimit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, grades);
+        return Objects.hash(name, grades, maxSizeLimit);
     }
 
     @Override
     public String toString() {
-        return String.format("SimpleMemoryGradeBook{name=%s}", this.name);
+        return String.format("SimpleMemoryGradeBook{name=%s, maxSizeLimit=%d}", this.name, this.maxSizeLimit);
     }
 }

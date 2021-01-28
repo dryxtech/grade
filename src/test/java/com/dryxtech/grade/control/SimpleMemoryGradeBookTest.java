@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,7 +49,7 @@ class SimpleMemoryGradeBookTest {
         this.rawList.add(tooColdGrade);
         this.rawList.add(justRightGrade);
 
-        this.gradeBook = new SimpleMemoryGradeBook<>(SimpleMemoryGradeBookTest.class.getSimpleName(), rawList);
+        this.gradeBook = new SimpleMemoryGradeBook<>(SimpleMemoryGradeBookTest.class.getSimpleName(), rawList, 4);
     }
 
     @Test
@@ -65,6 +66,9 @@ class SimpleMemoryGradeBookTest {
 
         assertEquals(4, rawList.size());
         assertTrue(rawList.contains(grade));
+
+        // at max limit
+        assertThrows(IllegalStateException.class, () -> gradeBook.record(grade));
     }
 
     @Test
@@ -76,6 +80,9 @@ class SimpleMemoryGradeBookTest {
 
         assertEquals(4, rawList.size());
         assertTrue(rawList.contains(grade));
+
+        // at max limit
+        assertThrows(IllegalStateException.class, () -> gradeBook.record(Collections.singletonList(grade)));
     }
 
     @Test
