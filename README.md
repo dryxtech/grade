@@ -20,14 +20,6 @@
 
 Java 1.8 or above
 
-### Maven Dependency
-```xml
-<dependency>
-    <groupId>com.dryxtech</groupId>
-    <artifactId>grade</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
 ### Basic Concepts
 
 * **GradeValueRange** is a named numeric range (e.g. {80...100} = A) 
@@ -173,6 +165,11 @@ Each range must include the following fields:
   ]
 }
 ```
+
+## Contribution
+
+You are welcome to contribute to the project with pull requests on GitHub.  
+If you believe you found a bug or have any question, please use the issue tracker.
 
 ## License
 
