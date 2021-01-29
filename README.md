@@ -104,7 +104,7 @@ Java 1.8 or above
     ManagedGrade managedGrade=
         new BasicManagedGrade(gpaGrade,Collections.singletonMap("organization","DRYXTECH"));
 
-        GradeBook gradeBook=new SimpleMemoryGradeBook<>();
+        GradeBook<ManagedGrade> gradeBook=new SimpleMemoryGradeBook<>();
         gradeBook.record(managedGrade);
 ```
 
@@ -126,7 +126,7 @@ Java 1.8 or above
 ```java
     GradeManager manager=new GradeManager(
         new GradingSystemRegistry(),
-        new SimpleMemoryGradeBook<>(),
+        new SimpleMemoryGradeBook<ManagedGrade>(),
         Collections.singletonMap("organization","DRYXTECH")
         );
 

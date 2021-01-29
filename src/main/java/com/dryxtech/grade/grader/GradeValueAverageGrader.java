@@ -2,7 +2,6 @@ package com.dryxtech.grade.grader;
 
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
-import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Drew Griffin
  * @since 1.0
  */
-public class GradeValueAverageGrader extends AbstractGrader implements Grader<Collection<GradeValue>> {
+public class GradeValueAverageGrader extends AbstractGrader<Collection<GradeValue>> {
 
     public GradeValueAverageGrader(final GradingSystem gradingSystem) {
         super(gradingSystem);

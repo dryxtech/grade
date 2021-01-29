@@ -3,6 +3,7 @@ package com.dryxtech.grade.grader;
 import com.dryxtech.grade.api.GradeConverter;
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
+import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.system.GradingSystemRegistry;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ import java.util.Optional;
  * @author Drew Griffin
  * @since 1.0
  */
-public abstract class AbstractGrader {
+public abstract class AbstractGrader<T> implements Grader<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGrader.class);
 
@@ -58,6 +59,8 @@ public abstract class AbstractGrader {
         }
         return gradeValue;
     }
+
+    public abstract GradeValue grade(T t) throws GradeException;
 
     @Override
     public String toString() {

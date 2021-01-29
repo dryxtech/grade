@@ -145,7 +145,7 @@ public class GradeManager {
 
     // Graders
 
-    public Grader<Number> getGrader() throws GradeException {
+    public Grader<Number> getGrader() {
         return defaultGrader;
     }
 
@@ -153,7 +153,7 @@ public class GradeManager {
         return graderFactory.createNumberGrader(gradingSystemId);
     }
 
-    public Grader<Collection<Number>> getAverageGrader() throws GradeException {
+    public Grader<Collection<Number>> getAverageGrader() {
         return defaultAverageGrader;
     }
 
@@ -161,7 +161,7 @@ public class GradeManager {
         return graderFactory.createNumberAverageGrader(gradingSystemId);
     }
 
-    public Grader<Collection<GradeValue>> getRollupGrader() throws GradeException {
+    public Grader<Collection<GradeValue>> getRollupGrader() {
         return defaultRollupGrader;
     }
 
@@ -169,7 +169,7 @@ public class GradeManager {
         return graderFactory.createGradeValueAverageGrader(gradingSystemId);
     }
 
-    public Grader<Collection<Grade>> getWeightedRollupGrader() throws GradeException {
+    public Grader<Collection<Grade>> getWeightedRollupGrader() {
         return defaultWeightedRollupGrader;
     }
 

@@ -7,7 +7,7 @@ import java.util.Objects;
 public class GradeRank implements Comparable<GradeRank> {
 
     private final Grade grade;
-    private long rank = 0;
+    private long rank = 0L;
 
     public GradeRank(Grade grade, long rank) {
         this.grade = grade;

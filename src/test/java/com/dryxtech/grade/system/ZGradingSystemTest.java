@@ -70,42 +70,32 @@ class ZGradingSystemTest {
 
     @Test
     void getStartNumericValue() {
-        gradingSystem.getRanges().forEach(range -> {
-            assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeStartValue(),
-                    gradingSystem.getStartNumericValue(range.getTextValue()).get());
-        });
+        gradingSystem.getRanges().forEach(range -> assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeStartValue(),
+                gradingSystem.getStartNumericValue(range.getTextValue()).get()));
     }
 
     @Test
     void getMidNumericValue() {
-        gradingSystem.getRanges().forEach(range -> {
-            assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeMidValue(),
-                    gradingSystem.getMidNumericValue(range.getTextValue()).get());
-        });
+        gradingSystem.getRanges().forEach(range -> assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeMidValue(),
+                gradingSystem.getMidNumericValue(range.getTextValue()).get()));
     }
 
     @Test
     void getEndNumericValue() {
-        gradingSystem.getRanges().forEach(range -> {
-            assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeEndValue(),
-                    gradingSystem.getEndNumericValue(range.getTextValue()).get());
-        });
+        gradingSystem.getRanges().forEach(range -> assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeEndValue(),
+                gradingSystem.getEndNumericValue(range.getTextValue()).get()));
     }
 
     @Test
     void getTextValue() {
-        gradingSystem.getRanges().forEach(range -> {
-            assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeStartValue(),
-                    gradingSystem.getStartNumericValue(range.getTextValue()).get());
-        });
+        gradingSystem.getRanges().forEach(range -> assertEquals(ZLevel.of(range.getTextValue()).get().getRange().getEffectiveRangeStartValue(),
+                gradingSystem.getStartNumericValue(range.getTextValue()).get()));
     }
 
     @Test
     void getPerformanceLevel() {
-        gradingSystem.getRanges().forEach(range -> {
-            assertEquals(Optional.of(range.getPerformanceLevel()),
-                    gradingSystem.getPerformanceLevel(range.getEffectiveRangeMidValue()));
-        });
+        gradingSystem.getRanges().forEach(range -> assertEquals(Optional.of(range.getPerformanceLevel()),
+                gradingSystem.getPerformanceLevel(range.getEffectiveRangeMidValue())));
     }
 
     @Test

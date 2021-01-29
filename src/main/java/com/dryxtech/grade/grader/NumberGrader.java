@@ -2,7 +2,6 @@ package com.dryxtech.grade.grader;
 
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
-import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
@@ -16,7 +15,7 @@ import java.util.Objects;
  * @author Drew Griffin
  * @since 1.0
  */
-public class NumberGrader extends AbstractGrader implements Grader<Number> {
+public class NumberGrader extends AbstractGrader<Number> {
 
     public NumberGrader(final GradingSystem gradingSystem) {
         super(gradingSystem);
