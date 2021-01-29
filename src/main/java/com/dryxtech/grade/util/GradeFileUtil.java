@@ -68,7 +68,8 @@ public final class GradeFileUtil {
         mapper.writeValue(file, gradingSystem);
     }
 
-    public static void saveGradingSystems(final File file, final Collection<GradingSystem> gradingSystems) throws IOException {
+    public static void saveGradingSystems(final File file, final Collection<GradingSystem> gradingSystems)
+            throws IOException {
         mapper.writeValue(file, gradingSystems);
     }
 

@@ -147,7 +147,7 @@ public class BasicGradingSystem implements GradingSystem {
                 .collect(Collectors.toList());
     }
 
-    protected void setRanges(Collection<GradeValueRange> ranges) {
+    private void setRanges(Collection<GradeValueRange> ranges) {
         this.ranges = new ArrayList<>(ranges);
         this.rangesByTextValue = new HashMap<>();
         ranges.forEach(range -> this.rangesByTextValue.put(range.getTextValue().toUpperCase(), range));
@@ -167,8 +167,12 @@ public class BasicGradingSystem implements GradingSystem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
         BasicGradingSystem that = (BasicGradingSystem) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(description, that.description) &&

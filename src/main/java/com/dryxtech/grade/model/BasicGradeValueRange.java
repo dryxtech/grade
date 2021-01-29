@@ -158,11 +158,8 @@ public class BasicGradeValueRange implements GradeValueRange, Comparable<GradeVa
 
     public int compareValue(final BigDecimal value) {
 
-        if (Objects.isNull(value)) {
-            return -1;
-        }
-
-        if ((getStartValueInclusive() && (value.compareTo(startValue) < 0)) ||
+        if ((Objects.isNull(value)) ||
+                (getStartValueInclusive() && (value.compareTo(startValue) < 0)) ||
                 (!getStartValueInclusive() && (value.compareTo(startValue) <= 0))) {
             return -1;
         }

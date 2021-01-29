@@ -93,7 +93,7 @@ public class GradeBuilder {
 
         this.references = new HashMap<>();
         if (Objects.nonNull(references)) {
-            references.keySet().forEach(key -> {
+            references.keySet().forEach((String key) -> {
                 GradeReference r = references.get(key);
                 this.reference(key, r);
             });
@@ -137,7 +137,8 @@ public class GradeBuilder {
     }
 
     public Grade build() {
-        Grade grade = new BasicGrade(gradeReferenceBuilder.build(), gradeValueBuilder.build(), timestamp, weight, references);
+        Grade grade = new BasicGrade(gradeReferenceBuilder.build(), gradeValueBuilder.build(), timestamp, weight,
+                references);
         clear();
         return grade;
     }
