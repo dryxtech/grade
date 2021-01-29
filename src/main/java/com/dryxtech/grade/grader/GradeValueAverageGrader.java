@@ -19,7 +19,6 @@ package com.dryxtech.grade.grader;
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.GradingSystem;
-import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
 import com.dryxtech.grade.util.GradeMathUtil;
 
@@ -54,12 +53,6 @@ public class GradeValueAverageGrader extends AbstractGrader<Collection<GradeValu
                 .collect(Collectors.toList()))
                 .orElseThrow(() -> new GradeException("failed to get average of grade values"));
 
-        String textValue = getTextValue(numericValue);
-
-        return GradeValueBuilder.builder()
-                .gradingSystem(gradingSystem.getId())
-                .numericValue(numericValue)
-                .textValue(textValue)
-                .build();
+        return getGradeValue(numericValue);
     }
 }

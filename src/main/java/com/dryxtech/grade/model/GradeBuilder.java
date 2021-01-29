@@ -95,7 +95,7 @@ public class GradeBuilder {
         if (Objects.nonNull(references)) {
             references.keySet().forEach(key -> {
                 GradeReference r = references.get(key);
-                this.references.put(key, new BasicGradeReference(r.getId(), r.getType(), r.getDescription(), r.getExtensions()));
+                this.reference(key, r);
             });
         }
         return this;

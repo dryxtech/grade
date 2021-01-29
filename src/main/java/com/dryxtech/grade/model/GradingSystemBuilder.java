@@ -94,8 +94,9 @@ public class GradingSystemBuilder {
 
     public GradingSystem build() {
 
-        BasicGradingSystem gradingSystem = new BasicGradingSystem(id, description, category, type, name, variant, ranges.stream().map(r -> new BasicGradeValueRange(r.getTextValue(),
-                r.getStartValue(), r.getEndValue(), r.getStartValueInclusive(), r.getEndValueInclusive(), r.getPerformanceLevel().getLabel()))
+        BasicGradingSystem gradingSystem = new BasicGradingSystem(id, description, category, type, name, variant, ranges.stream()
+                .map(r -> new BasicGradeValueRange(r.getTextValue(), r.getStartValue(), r.getEndValue(),
+                        r.getStartValueInclusive(), r.getEndValueInclusive(), r.getPerformanceLevel().getLabel()))
                 .collect(Collectors.toList()));
         clear();
         return gradingSystem;

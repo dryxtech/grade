@@ -19,7 +19,6 @@ package com.dryxtech.grade.grader;
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.GradingSystem;
-import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
 
 import java.math.BigDecimal;
@@ -45,12 +44,6 @@ public class NumberGrader extends AbstractGrader<Number> {
     public GradeValue grade(final Number numericValue) throws GradeException {
         Objects.requireNonNull(numericValue, "numeric value must not be null");
 
-        String textValue = getTextValue(new BigDecimal(numericValue.toString()));
-
-        return GradeValueBuilder.builder()
-                .gradingSystem(gradingSystem.getId())
-                .numericValue(numericValue)
-                .textValue(textValue)
-                .build();
+        return getGradeValue(new BigDecimal(numericValue.toString()));
     }
 }

@@ -21,6 +21,7 @@ import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,10 +56,19 @@ public abstract class AbstractGrader<T> implements Grader<T> {
     }
 
     public String getTextValue(final BigDecimal numericValue) throws GradeException {
-        Objects.requireNonNull(gradingSystem, "numeric value must not be null");
+        Objects.requireNonNull(numericValue, "numeric value must not be null");
         return gradingSystem.getTextValue(new BigDecimal(numericValue.toString()))
                 .orElseThrow(() -> new GradeException(String.format("failed to get textValue for numericValue %s from grading system %s",
                         numericValue, gradingSystem.getId())));
+    }
+
+    public GradeValue getGradeValue(final BigDecimal numericValue) throws GradeException {
+        Objects.requireNonNull(numericValue, "numeric value must not be null");
+        return GradeValueBuilder.builder()
+                .gradingSystem(gradingSystem.getId())
+                .numericValue(numericValue)
+                .textValue(getTextValue(numericValue))
+                .build();
     }
 
     protected GradeValue convert(final GradeValue gradeValue) {
