@@ -15,12 +15,14 @@ public interface Grade extends GradeValue, GradeReference {
 
     /**
      * Getter of grade timestamp.
+     *
      * @return Timestamp of grade
      */
     ZonedDateTime getTimestamp();
 
     /**
      * Getter of grade weight.
+     *
      * @return Weight of grade
      */
     BigDecimal getWeight();
@@ -35,6 +37,7 @@ public interface Grade extends GradeValue, GradeReference {
 
     /**
      * Getter for all grade references.
+     *
      * @return All references for a grade
      */
     Map<String, GradeReference> getReferences();

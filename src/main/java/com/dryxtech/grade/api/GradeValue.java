@@ -13,18 +13,21 @@ public interface GradeValue extends Comparable<GradeValue> {
 
     /**
      * Getter of grade numeric value.
+     *
      * @return numeric value
      */
     BigDecimal getNumericValue();
 
     /**
      * Getter of grade text value.
+     *
      * @return text value
      */
     String getTextValue();
 
     /**
      * Getter of grade grading-system.
+     *
      * @return grading system id
      */
     String getGradingSystem();

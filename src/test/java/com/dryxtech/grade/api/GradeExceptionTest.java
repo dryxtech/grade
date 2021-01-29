@@ -13,14 +13,18 @@ class GradeExceptionTest {
 
         String message = "test";
 
-        Exception exception = assertThrows(GradeException.class, () -> { throw new GradeException(message); });
+        Exception exception = assertThrows(GradeException.class, () -> {
+            throw new GradeException(message);
+        });
         assertEquals(message, exception.getMessage());
     }
 
     @Test
     public void testConstructor_Null() {
 
-        Exception exception = assertThrows(GradeException.class, () -> { throw new GradeException(null); });
+        Exception exception = assertThrows(GradeException.class, () -> {
+            throw new GradeException(null);
+        });
         assertNull(exception.getMessage());
     }
 
@@ -30,7 +34,9 @@ class GradeExceptionTest {
         String message = "test";
         Throwable cause = new IllegalStateException("foobar");
 
-        Exception exception = assertThrows(GradeException.class, () -> { throw new GradeException(message, cause); });
+        Exception exception = assertThrows(GradeException.class, () -> {
+            throw new GradeException(message, cause);
+        });
         assertEquals(message, exception.getMessage());
         assertEquals(cause, exception.getCause());
     }
@@ -40,7 +46,9 @@ class GradeExceptionTest {
 
         String message = "test";
 
-        Exception exception = assertThrows(GradeException.class, () -> { throw new GradeException(message, null); });
+        Exception exception = assertThrows(GradeException.class, () -> {
+            throw new GradeException(message, null);
+        });
         assertEquals(message, exception.getMessage());
         assertNull(exception.getCause());
     }

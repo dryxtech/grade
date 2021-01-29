@@ -1,9 +1,18 @@
 package com.dryxtech.grade.control;
 
+import com.dryxtech.grade.api.Grade;
+import com.dryxtech.grade.api.GradeBook;
+import com.dryxtech.grade.api.GradeConverter;
+import com.dryxtech.grade.api.GradeException;
+import com.dryxtech.grade.api.GradeValue;
+import com.dryxtech.grade.api.Grader;
+import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.api.ManagedGrade;
 import com.dryxtech.grade.grader.GradeValueAverageGrader;
 import com.dryxtech.grade.grader.GradeWeightedAverageGrader;
 import com.dryxtech.grade.grader.GraderFactory;
 import com.dryxtech.grade.grader.NumberAverageGrader;
+import com.dryxtech.grade.grader.NumberGrader;
 import com.dryxtech.grade.model.BasicManagedGrade;
 import com.dryxtech.grade.model.GradeBuilder;
 import com.dryxtech.grade.model.GradeRank;
@@ -17,15 +26,6 @@ import com.dryxtech.grade.system.GradingSystemRegistry;
 import com.dryxtech.grade.system.ZGradingSystem;
 import com.dryxtech.grade.util.GradeFileUtil;
 import com.dryxtech.grade.util.GradeMathUtil;
-import com.dryxtech.grade.api.Grade;
-import com.dryxtech.grade.api.GradeBook;
-import com.dryxtech.grade.api.GradeConverter;
-import com.dryxtech.grade.api.GradeException;
-import com.dryxtech.grade.api.GradeValue;
-import com.dryxtech.grade.api.Grader;
-import com.dryxtech.grade.api.GradingSystem;
-import com.dryxtech.grade.api.ManagedGrade;
-import com.dryxtech.grade.grader.NumberGrader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,10 +66,6 @@ public class GradeManager {
         this(new GradingSystemRegistry(), new SimpleMemoryGradeBook<>(), new HashMap<>());
     }
 
-    public GradeManager(final Map<String, Object> managementInfo) {
-        this(new GradingSystemRegistry(), new SimpleMemoryGradeBook<>(), managementInfo);
-    }
-
     public GradeManager(final GradingSystemRegistry gradingSystemRegistry,
                         final GradeBook<ManagedGrade> gradeBook,
                         final Map<String, Object> managementInfo) {
@@ -88,7 +84,25 @@ public class GradeManager {
         setDefaultGradingSystem(vzGradingSystem);
     }
 
+    public synchronized void setDefaultGradingSystem(final GradingSystem gradingSystem) {
+
+        registerGradingSystem(GradeConstants.DEFAULT_GRADING_SYSTEM_ID, gradingSystem);
+
+        defaultGrader = new NumberGrader(gradingSystem);
+        defaultAverageGrader = new NumberAverageGrader(gradingSystem, gradingSystemRegistry);
+        defaultRollupGrader = new GradeValueAverageGrader(gradingSystem, gradingSystemRegistry);
+        defaultWeightedRollupGrader = new GradeWeightedAverageGrader(gradingSystem, gradingSystemRegistry);
+    }
+
     // Management
+
+    public void registerGradingSystem(final String key, final GradingSystem gradingSystem) {
+        gradingSystemRegistry.registerSystem(key, gradingSystem);
+    }
+
+    public GradeManager(final Map<String, Object> managementInfo) {
+        this(new GradingSystemRegistry(), new SimpleMemoryGradeBook<>(), managementInfo);
+    }
 
     public Map<String, Object> getManagementInformation() {
         return this.managementInfo;
@@ -114,20 +128,6 @@ public class GradeManager {
         }
 
         return failedLoads.get() == 0;
-    }
-
-    public void registerGradingSystem(final String key, final GradingSystem gradingSystem) {
-        gradingSystemRegistry.registerSystem(key, gradingSystem);
-    }
-
-    public synchronized void setDefaultGradingSystem(final GradingSystem gradingSystem) {
-
-        registerGradingSystem(GradeConstants.DEFAULT_GRADING_SYSTEM_ID, gradingSystem);
-
-        defaultGrader = new NumberGrader(gradingSystem);
-        defaultAverageGrader = new NumberAverageGrader(gradingSystem, gradingSystemRegistry);
-        defaultRollupGrader = new GradeValueAverageGrader(gradingSystem, gradingSystemRegistry);
-        defaultWeightedRollupGrader = new GradeWeightedAverageGrader(gradingSystem, gradingSystemRegistry);
     }
 
     public GradingSystemRegistry getGradingSystemRegistry() {
@@ -290,6 +290,6 @@ public class GradeManager {
 
     public GradeConverter lookupConverter(final String fromGradingSystem, final String toGradingSystem) throws GradeConverterNotFoundException {
         return gradingSystemRegistry.lookupConverter(fromGradingSystem, toGradingSystem)
-                .orElseThrow(() ->new GradeConverterNotFoundException(fromGradingSystem, toGradingSystem));
+                .orElseThrow(() -> new GradeConverterNotFoundException(fromGradingSystem, toGradingSystem));
     }
 }

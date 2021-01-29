@@ -18,10 +18,6 @@ public class GradeRank implements Comparable<GradeRank> {
         return grade;
     }
 
-    public long getRank() {
-        return rank;
-    }
-
     @Override
     public int compareTo(GradeRank gradeRank) {
 
@@ -32,17 +28,21 @@ public class GradeRank implements Comparable<GradeRank> {
         return Long.compare(getRank(), gradeRank.getRank());
     }
 
+    public long getRank() {
+        return rank;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(grade, rank);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GradeRank gradeRank = (GradeRank) o;
         return rank == gradeRank.rank && Objects.equals(grade, gradeRank.grade);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(grade, rank);
     }
 
     @Override

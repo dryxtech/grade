@@ -1,11 +1,11 @@
 package com.dryxtech.grade;
 
-import com.dryxtech.grade.model.BasicGradeReference;
-import com.dryxtech.grade.system.GradingSystemType;
 import com.dryxtech.grade.api.Grade;
 import com.dryxtech.grade.api.GradeReference;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.model.BasicGradeReference;
+import com.dryxtech.grade.system.GradingSystemType;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
@@ -47,6 +47,23 @@ public final class GradeTesting {
         // Test Utility
     }
 
+    public static List<Grade> mockGrades(int start, int total) {
+        List<Number> values = IntStream.range(start, start + total).boxed().collect(Collectors.toList());
+        return mockGrades(values.toArray(new Number[total]));
+    }
+
+    public static List<Grade> mockGrades(Number... numericValues) {
+        List<Grade> mocks = new ArrayList<>();
+        for (Number value : numericValues) {
+            GradeValue gradeValue = mockGradeValue(value, (value.intValue() % 2 == 0) ? "EVEN" : "ODD");
+            GradeReference self = mockGradeReference(GRADE_TYPE, GRADE_DESCRIPTION + value.intValue());
+            Grade grade = mockGrade(self, gradeValue, 1);
+            mocks.add(grade);
+        }
+
+        return mocks;
+    }
+
     public static GradeValue mockGradeValue(Number numericValue, String textValue) {
         GradeValue mock = Mockito.mock(GradeValue.class);
         when(mock.getNumericValue()).thenReturn(new BigDecimal(numericValue.toString()));
@@ -86,23 +103,6 @@ public final class GradeTesting {
         when(mock.getReferences()).thenReturn(references);
         when(mock.getWeight()).thenReturn(new BigDecimal(weight.toString()));
         return mock;
-    }
-
-    public static List<Grade> mockGrades(Number... numericValues) {
-        List<Grade> mocks = new ArrayList<>();
-        for (Number value : numericValues) {
-            GradeValue gradeValue = mockGradeValue(value, (value.intValue() % 2 == 0) ? "EVEN" : "ODD");
-            GradeReference self = mockGradeReference(GRADE_TYPE, GRADE_DESCRIPTION + value.intValue());
-            Grade grade = mockGrade(self, gradeValue, 1);
-            mocks.add(grade);
-        }
-
-        return mocks;
-    }
-
-    public static List<Grade> mockGrades(int start, int total) {
-        List<Number> values = IntStream.range(start, start + total).boxed().collect(Collectors.toList());
-        return mockGrades(values.toArray(new Number[total]));
     }
 
     public static GradingSystem mockGradingSystem() {

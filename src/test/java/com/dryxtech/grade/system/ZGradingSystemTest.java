@@ -1,10 +1,10 @@
 package com.dryxtech.grade.system;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
 import com.dryxtech.grade.GradeTesting;
 import com.dryxtech.grade.api.GradeValueRange;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.control.GradeConstants;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ZGradingSystemTest {
 

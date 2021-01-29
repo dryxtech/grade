@@ -1,7 +1,7 @@
 package com.dryxtech.grade.system;
 
-import com.dryxtech.grade.model.BasicGradingSystem;
 import com.dryxtech.grade.control.GradeConstants;
+import com.dryxtech.grade.model.BasicGradingSystem;
 
 import java.util.Arrays;
 

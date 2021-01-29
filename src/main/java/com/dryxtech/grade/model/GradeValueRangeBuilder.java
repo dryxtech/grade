@@ -20,10 +20,6 @@ public class GradeValueRangeBuilder {
     private boolean isRangeEndInclusive;
     private String performanceLevel;
 
-    public static GradeValueRangeBuilder builder() {
-        return new GradeValueRangeBuilder();
-    }
-
     public GradeValueRangeBuilder() {
         this.isRangeStartInclusive = true;
         this.isRangeEndInclusive = false;
@@ -39,14 +35,8 @@ public class GradeValueRangeBuilder {
         this.performanceLevel = performanceLevel;
     }
 
-    public GradeValueRangeBuilder clear() {
-        this.textValue = null;
-        this.rangeStartValue = null;
-        this.rangeEndValue = null;
-        this.isRangeStartInclusive = true;
-        this.isRangeEndInclusive = false;
-        this.performanceLevel = null;
-        return this;
+    public static GradeValueRangeBuilder builder() {
+        return new GradeValueRangeBuilder();
     }
 
     public GradeValueRangeBuilder textValue(final String textValue) {
@@ -97,6 +87,16 @@ public class GradeValueRangeBuilder {
                 isRangeStartInclusive, isRangeEndInclusive, performanceLevel);
         clear();
         return range;
+    }
+
+    public GradeValueRangeBuilder clear() {
+        this.textValue = null;
+        this.rangeStartValue = null;
+        this.rangeEndValue = null;
+        this.isRangeStartInclusive = true;
+        this.isRangeEndInclusive = false;
+        this.performanceLevel = null;
+        return this;
     }
 }
 

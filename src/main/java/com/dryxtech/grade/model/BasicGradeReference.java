@@ -1,9 +1,9 @@
 package com.dryxtech.grade.model;
 
+import com.dryxtech.grade.api.GradeReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.dryxtech.grade.api.GradeReference;
 
 import java.util.Collections;
 import java.util.Map;
@@ -36,10 +36,30 @@ public class BasicGradeReference implements GradeReference {
 
         if (Objects.nonNull(extensions)) {
             this.extensions = Collections.unmodifiableMap(extensions);
-        }
-        else {
+        } else {
             this.extensions = null;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, description, extensions);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        } else if (!(o instanceof GradeReference)) {
+            return false;
+        }
+
+        GradeReference ref = (GradeReference) o;
+
+        return Objects.equals(this.getId(), ref.getId()) &&
+                Objects.equals(this.getType(), ref.getType()) &&
+                Objects.equals(this.getDescription(), ref.getDescription()) &&
+                Objects.equals(this.getExtensions(), ref.getExtensions());
     }
 
     @Override
@@ -69,28 +89,6 @@ public class BasicGradeReference implements GradeReference {
     @Override
     public Map<String, Object> getExtensions() {
         return extensions;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        else if (!(o instanceof GradeReference)) {
-            return false;
-        }
-
-        GradeReference ref = (GradeReference) o;
-
-        return Objects.equals(this.getId(), ref.getId()) &&
-                Objects.equals(this.getType(), ref.getType()) &&
-                Objects.equals(this.getDescription(), ref.getDescription()) &&
-                Objects.equals(this.getExtensions(), ref.getExtensions());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, type, description, extensions);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.dryxtech.grade.control;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
 import com.dryxtech.grade.api.ManagedGrade;
 import com.dryxtech.grade.model.BasicManagedGrade;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

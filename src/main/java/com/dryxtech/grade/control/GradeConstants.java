@@ -11,18 +11,12 @@ import java.util.Collection;
  */
 public final class GradeConstants {
 
-    private GradeConstants() {
-        // Constants
-    }
-
     // grading system constants
     public static final String DEFAULT_GRADING_SYSTEM_ID = "default";
     public static final String GRADING_SYSTEM_FILE_EXTENSION = ".json";
     public static final String GRADING_SYSTEM_FILE_FOLDER = "grading-systems";
-
     // default grading system (concrete class implementation)
     public static final String Z_GRADING_SYSTEM = "general.percent.z-system.us";
-
     // bundled grading systems (under resources/grading-system folder)
     public static final String STANDARD_ACADEMIC_SYSTEM = "academic.percent.standard.us";
     public static final String STANDARD_BINARY_PASS_FAIL_SYSTEM = "general.binary.pass-fail.us";
@@ -32,7 +26,6 @@ public final class GradeConstants {
     public static final String STANDARD_PLUS_MINUS_ACADEMIC_SYSTEM = "academic.percent.standard-plus-minus.us";
     public static final String STANDARD_POOR_TO_EXCELLENT_SYSTEM = "general.percent.poor-to-excellent.us";
     public static final String STANDARD_WIN_DRAW_LOSE_SYSTEM = "general.ternary.win-draw-lose.us";
-
     // known grading system ids
     static final String[] GRADING_SYSTEM_IDS = {
             STANDARD_ACADEMIC_SYSTEM,
@@ -45,7 +38,6 @@ public final class GradeConstants {
             STANDARD_WIN_DRAW_LOSE_SYSTEM,
             Z_GRADING_SYSTEM
     };
-
     // bundled grading system definition files
     static final String[] GRADING_SYSTEM_DEFINITION_FILES = {
             STANDARD_ACADEMIC_SYSTEM + GRADING_SYSTEM_FILE_EXTENSION,
@@ -57,6 +49,10 @@ public final class GradeConstants {
             STANDARD_POOR_TO_EXCELLENT_SYSTEM + GRADING_SYSTEM_FILE_EXTENSION,
             STANDARD_WIN_DRAW_LOSE_SYSTEM + GRADING_SYSTEM_FILE_EXTENSION
     };
+
+    private GradeConstants() {
+        // Constants
+    }
 
     public static Collection<String> getBundledGradingSystemFiles() {
         return Arrays.asList(GRADING_SYSTEM_DEFINITION_FILES);

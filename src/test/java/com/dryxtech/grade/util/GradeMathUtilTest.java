@@ -1,8 +1,8 @@
 package com.dryxtech.grade.util;
 
 import com.dryxtech.grade.GradeTesting;
-import com.dryxtech.grade.model.GradeRank;
 import com.dryxtech.grade.api.Grade;
+import com.dryxtech.grade.model.GradeRank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +17,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.dryxtech.grade.GradeTesting.mockGrade;
-import static com.dryxtech.grade.GradeTesting.mockGrades;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

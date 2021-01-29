@@ -1,11 +1,11 @@
 package com.dryxtech.grade.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.dryxtech.grade.api.Grade;
 import com.dryxtech.grade.api.GradeReference;
 import com.dryxtech.grade.api.GradeValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -79,13 +79,50 @@ public class BasicGrade implements Grade {
     }
 
     @Override
-    public String getGradingSystem() {
-        return gradingSystem;
+    public int compareTo(GradeValue o) {
+        return new BasicGradeValue(numericValue, textValue, gradingSystem).compareTo(o);
+    }
+
+    @Override
+    public int hashCode() {
+        long epochTime = Objects.nonNull(timestamp) ? getTimestamp().toEpochSecond() : 0;
+        return Objects.hash(getId(), getType(), getNumericValue(), getTextValue(), getGradingSystem(), epochTime,
+                getWeight(), getDescription(), getExtensions(), getReferences());
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        } else if (!(o instanceof Grade)) {
+            return false;
+        }
+
+        Grade grade = (Grade) o;
+
+        long thisEpochTime = Objects.nonNull(getTimestamp()) ? getTimestamp().toEpochSecond() : 0;
+        long thatEpochTime = Objects.nonNull(grade.getTimestamp()) ? grade.getTimestamp().toEpochSecond() : 0;
+
+        return Objects.equals(this.getId(), grade.getId()) &&
+                Objects.equals(this.getType(), grade.getType()) &&
+                Objects.equals(this.getNumericValue(), grade.getNumericValue()) &&
+                Objects.equals(this.getTextValue(), grade.getTextValue()) &&
+                Objects.equals(this.getGradingSystem(), grade.getGradingSystem()) &&
+                Objects.equals(thisEpochTime, thatEpochTime) &&
+                Objects.equals(this.getDescription(), grade.getDescription()) &&
+                Objects.equals(this.getExtensions(), grade.getExtensions()) &&
+                Objects.equals(this.getReferences(), grade.getReferences()) &&
+                Objects.equals(this.getWeight(), grade.getWeight());
     }
 
     @Override
     public ZonedDateTime getTimestamp() {
         return timestamp;
+    }
+
+    @Override
+    public BigDecimal getWeight() {
+        return weight;
     }
 
     @Override
@@ -95,11 +132,6 @@ public class BasicGrade implements Grade {
         }
 
         return Optional.ofNullable(references.get(key));
-    }
-
-    @Override
-    public BigDecimal getWeight() {
-        return weight;
     }
 
     @Override
@@ -146,40 +178,8 @@ public class BasicGrade implements Grade {
     }
 
     @Override
-    public int compareTo(GradeValue o) {
-        return new BasicGradeValue(numericValue, textValue, gradingSystem).compareTo(o);
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        } else if (!(o instanceof Grade)) {
-            return false;
-        }
-
-        Grade grade = (Grade) o;
-
-        long thisEpochTime = Objects.nonNull(getTimestamp()) ? getTimestamp().toEpochSecond() : 0;
-        long thatEpochTime = Objects.nonNull(grade.getTimestamp()) ? grade.getTimestamp().toEpochSecond() : 0;
-
-        return Objects.equals(this.getId(), grade.getId()) &&
-                Objects.equals(this.getType(), grade.getType()) &&
-                Objects.equals(this.getNumericValue(), grade.getNumericValue()) &&
-                Objects.equals(this.getTextValue(), grade.getTextValue()) &&
-                Objects.equals(this.getGradingSystem(), grade.getGradingSystem()) &&
-                Objects.equals(thisEpochTime, thatEpochTime) &&
-                Objects.equals(this.getDescription(), grade.getDescription()) &&
-                Objects.equals(this.getExtensions(), grade.getExtensions()) &&
-                Objects.equals(this.getReferences(), grade.getReferences()) &&
-                Objects.equals(this.getWeight(), grade.getWeight());
-    }
-
-    @Override
-    public int hashCode() {
-        long epochTime = Objects.nonNull(timestamp) ? getTimestamp().toEpochSecond() : 0;
-        return Objects.hash(getId(), getType(), getNumericValue(), getTextValue(), getGradingSystem(), epochTime,
-                getWeight(), getDescription(), getExtensions(), getReferences());
+    public String getGradingSystem() {
+        return gradingSystem;
     }
 
     @Override

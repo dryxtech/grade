@@ -1,12 +1,12 @@
 package com.dryxtech.grade.model;
 
+import com.dryxtech.grade.api.GradeValueRange;
+import com.dryxtech.grade.api.PerformanceLevel;
 import com.dryxtech.grade.util.GradeMathUtil;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.dryxtech.grade.api.GradeValueRange;
-import com.dryxtech.grade.api.PerformanceLevel;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -61,6 +61,34 @@ public class BasicGradeValueRange implements GradeValueRange, Comparable<GradeVa
             this.effectiveRangeMidValue = GradeMathUtil.calculateAverage(
                     Arrays.asList(this.effectiveRangeStartValue, this.effectiveRangeEndValue), BigDecimal.ZERO);
         }
+    }
+
+    @Override
+    public int compareTo(GradeValueRange range) {
+        return compareValue(range.getEffectiveRangeStartValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textValue, startValueInclusive, endValueInclusive, startValue, endValue, performanceLevel);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        } else if (o instanceof GradeValueRange) {
+            BasicGradeValueRange nnr = (BasicGradeValueRange) o;
+            return Objects.equals(getTextValue(), nnr.getTextValue()) &&
+                    Objects.equals(getStartValueInclusive(), nnr.getStartValueInclusive()) &&
+                    Objects.equals(getEndValueInclusive(), nnr.getEndValueInclusive()) &&
+                    Objects.equals(getStartValue(), nnr.getStartValue()) &&
+                    Objects.equals(getEndValue(), nnr.getEndValue()) &&
+                    Objects.equals(getPerformanceLevel(), nnr.getPerformanceLevel());
+        }
+
+        return false;
     }
 
     @Override
@@ -129,34 +157,6 @@ public class BasicGradeValueRange implements GradeValueRange, Comparable<GradeVa
         }
 
         return 0;
-    }
-
-    @Override
-    public int compareTo(GradeValueRange range) {
-        return compareValue(range.getEffectiveRangeStartValue());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) {
-            return true;
-        } else if (o instanceof GradeValueRange) {
-            BasicGradeValueRange nnr = (BasicGradeValueRange) o;
-            return Objects.equals(getTextValue(), nnr.getTextValue()) &&
-                    Objects.equals(getStartValueInclusive(), nnr.getStartValueInclusive()) &&
-                    Objects.equals(getEndValueInclusive(), nnr.getEndValueInclusive()) &&
-                    Objects.equals(getStartValue(), nnr.getStartValue()) &&
-                    Objects.equals(getEndValue(), nnr.getEndValue()) &&
-                    Objects.equals(getPerformanceLevel(), nnr.getPerformanceLevel());
-        }
-
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(textValue, startValueInclusive, endValueInclusive, startValue, endValue, performanceLevel);
     }
 
     @Override

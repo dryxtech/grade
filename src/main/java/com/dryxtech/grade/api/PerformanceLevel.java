@@ -27,11 +27,6 @@ public enum PerformanceLevel {
         this.label = label;
     }
 
-    @JsonValue
-    public String getLabel() {
-        return label;
-    }
-
     public static PerformanceLevel of(String label) {
 
         if (Objects.isNull(label)) {
@@ -64,5 +59,10 @@ public enum PerformanceLevel {
             default:
                 return NONE;
         }
+    }
+
+    @JsonValue
+    public String getLabel() {
+        return label;
     }
 }

@@ -1,8 +1,8 @@
 package com.dryxtech.grade.system;
 
+import com.dryxtech.grade.api.PerformanceLevel;
 import com.dryxtech.grade.model.BasicGradeValueRange;
 import com.dryxtech.grade.model.GradeValueRangeBuilder;
-import com.dryxtech.grade.api.PerformanceLevel;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -71,7 +71,7 @@ public enum ZLevel {
             }
 
             BigDecimal value = new BigDecimal(numericValue.toString());
-            for (int i=startIndex; i<ORDERED_LEVELS.length; i++) {
+            for (int i = startIndex; i < ORDERED_LEVELS.length; i++) {
                 if (ORDERED_LEVELS[i].getRange().inRange(value)) {
                     return Optional.of(ORDERED_LEVELS[i]);
                 }
@@ -79,6 +79,10 @@ public enum ZLevel {
         }
 
         return Optional.empty();
+    }
+
+    public BasicGradeValueRange getRange() {
+        return range;
     }
 
     public static Optional<ZLevel> of(String textValue) {
@@ -126,9 +130,5 @@ public enum ZLevel {
 
     public int getOrder() {
         return order;
-    }
-
-    public BasicGradeValueRange getRange() {
-        return range;
     }
 }

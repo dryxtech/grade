@@ -1,12 +1,12 @@
 package com.dryxtech.grade.control;
 
-import com.dryxtech.grade.model.GradeRank;
 import com.dryxtech.grade.GradeTesting;
 import com.dryxtech.grade.api.Grade;
 import com.dryxtech.grade.api.GradeConverter;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.model.GradeRank;
 import com.dryxtech.grade.system.converter.TextValueBasedConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GradeManagerTest {
 

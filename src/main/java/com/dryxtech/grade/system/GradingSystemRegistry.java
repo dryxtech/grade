@@ -1,8 +1,8 @@
 package com.dryxtech.grade.system;
 
-import com.dryxtech.grade.util.IdentifierUtil;
 import com.dryxtech.grade.api.GradeConverter;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.util.IdentifierUtil;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -74,8 +74,9 @@ public class GradingSystemRegistry {
         return systemRegistry.values();
     }
 
-    public String getRegistryId() {
-        return registryId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(registryId, systemRegistry, converterRegistry);
     }
 
     @Override
@@ -90,12 +91,11 @@ public class GradingSystemRegistry {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(registryId, systemRegistry, converterRegistry);
-    }
-
-    @Override
     public String toString() {
         return "grading_system_registry{registryId=\"" + getRegistryId() + "\"}";
+    }
+
+    public String getRegistryId() {
+        return registryId;
     }
 }

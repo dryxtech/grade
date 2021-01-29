@@ -17,15 +17,8 @@ public class GradeValueBuilder {
     private String textValue;
     private String gradingSystem;
 
-    public static GradeValueBuilder builder() {
-        return new GradeValueBuilder();
+    public GradeValueBuilder() {
     }
-
-    public static GradeValueBuilder builder(final GradeValue gradeValue) {
-        return new GradeValueBuilder(gradeValue);
-    }
-
-    public GradeValueBuilder() {}
 
     public GradeValueBuilder(final GradeValue gradeValue) {
         this.numericValue = gradeValue.getNumericValue();
@@ -39,11 +32,12 @@ public class GradeValueBuilder {
         this.gradingSystem = gradingSystem;
     }
 
-    public GradeValueBuilder clear() {
-        numericValue = null;
-        textValue = null;
-        gradingSystem = null;
-        return this;
+    public static GradeValueBuilder builder() {
+        return new GradeValueBuilder();
+    }
+
+    public static GradeValueBuilder builder(final GradeValue gradeValue) {
+        return new GradeValueBuilder(gradeValue);
     }
 
     public GradeValueBuilder numericValue(final Number numericValue) {
@@ -69,5 +63,12 @@ public class GradeValueBuilder {
         GradeValue value = new BasicGradeValue(numericValue, textValue, gradingSystem);
         clear();
         return value;
+    }
+
+    public GradeValueBuilder clear() {
+        numericValue = null;
+        textValue = null;
+        gradingSystem = null;
+        return this;
     }
 }

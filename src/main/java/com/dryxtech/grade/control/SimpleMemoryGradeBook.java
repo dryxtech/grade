@@ -1,8 +1,8 @@
 package com.dryxtech.grade.control;
 
-import com.dryxtech.grade.util.IdentifierUtil;
 import com.dryxtech.grade.api.Grade;
 import com.dryxtech.grade.api.GradeBook;
+import com.dryxtech.grade.util.IdentifierUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,14 +31,6 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
         this(null, null, DEFAULT_MAX_SIZE_LIMIT);
     }
 
-    public SimpleMemoryGradeBook(final String name) {
-        this(name, null, DEFAULT_MAX_SIZE_LIMIT);
-    }
-
-    public SimpleMemoryGradeBook(final String name, final List<T> grades) {
-        this(name, grades, DEFAULT_MAX_SIZE_LIMIT);
-    }
-
     public SimpleMemoryGradeBook(final String name, final List<T> grades, int maxSizeLimit) {
 
         if (Objects.nonNull(name) && (name.trim().length() > 0)) {
@@ -57,6 +49,14 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
         }
 
         this.maxSizeLimit = maxSizeLimit;
+    }
+
+    public SimpleMemoryGradeBook(final String name) {
+        this(name, null, DEFAULT_MAX_SIZE_LIMIT);
+    }
+
+    public SimpleMemoryGradeBook(final String name, final List<T> grades) {
+        this(name, grades, DEFAULT_MAX_SIZE_LIMIT);
     }
 
     public String getName() {
@@ -126,6 +126,11 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name, grades, maxSizeLimit);
+    }
+
+    @Override
     public boolean equals(final Object o) {
 
         if (this == o) {
@@ -138,11 +143,6 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
         return Objects.equals(name, that.name) &&
                 Objects.equals(grades, that.grades) &&
                 Objects.equals(maxSizeLimit, that.maxSizeLimit);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, grades, maxSizeLimit);
     }
 
     @Override

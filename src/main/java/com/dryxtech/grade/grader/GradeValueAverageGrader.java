@@ -1,12 +1,12 @@
 package com.dryxtech.grade.grader;
 
-import com.dryxtech.grade.model.GradeValueBuilder;
-import com.dryxtech.grade.util.GradeMathUtil;
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.Grader;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.model.GradeValueBuilder;
 import com.dryxtech.grade.system.GradingSystemRegistry;
+import com.dryxtech.grade.util.GradeMathUtil;
 
 import java.math.BigDecimal;
 import java.util.Collection;

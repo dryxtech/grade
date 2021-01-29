@@ -1,9 +1,9 @@
 package com.dryxtech.grade.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.dryxtech.grade.api.Grade;
 import com.dryxtech.grade.api.ManagedGrade;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -40,6 +40,12 @@ public class BasicManagedGrade extends BasicGrade implements ManagedGrade {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getType(), getNumericValue(), getTextValue(), getGradingSystem(), getTimestamp(),
+                getWeight(), getDescription(), getExtensions(), getReferences(), management);
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -48,11 +54,5 @@ public class BasicManagedGrade extends BasicGrade implements ManagedGrade {
         }
 
         return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getType(), getNumericValue(), getTextValue(), getGradingSystem(), getTimestamp(),
-                getWeight(), getDescription(), getExtensions(), getReferences(), management);
     }
 }

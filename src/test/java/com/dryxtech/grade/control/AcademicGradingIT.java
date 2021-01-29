@@ -40,8 +40,7 @@ public class AcademicGradingIT {
             rankGrades();
             determineFinalGPA();
             clearGradeBook();
-        }
-        catch (GradeException ex) {
+        } catch (GradeException ex) {
             fail("standard academic grading scenario test failed!", ex);
         }
     }

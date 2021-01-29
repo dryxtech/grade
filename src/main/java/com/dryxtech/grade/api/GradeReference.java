@@ -13,18 +13,21 @@ public interface GradeReference {
 
     /**
      * Getter for grade reference identification.
+     *
      * @return Identification for a grade related item
      */
     String getId();
 
     /**
      * Getter for grade reference type.
+     *
      * @return Type of a grade related item
      */
     String getType();
 
     /**
      * Getter for grade reference description.
+     *
      * @return Description of a grade related item
      */
     String getDescription();
@@ -39,6 +42,7 @@ public interface GradeReference {
 
     /**
      * Getter for all grade reference extensions.
+     *
      * @return All extended attributes of a grade related item
      */
     Map<String, Object> getExtensions();

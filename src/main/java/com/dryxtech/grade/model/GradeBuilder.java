@@ -42,19 +42,25 @@ public class GradeBuilder {
         return new GradeBuilder(autoGenerateId);
     }
 
-    public GradeBuilder clear() {
-        gradeReferenceBuilder.clear();
-        gradeValueBuilder.clear();
-        timestamp = ZonedDateTime.now();
-        references = new HashMap<>();
-        weight = BigDecimal.ONE;
-        return this;
-    }
-
     public GradeBuilder gradeValue(final GradeValue gradeValue) {
         return numericValue(gradeValue.getNumericValue())
                 .textValue(gradeValue.getTextValue())
                 .gradingSystem(gradeValue.getGradingSystem());
+    }
+
+    public GradeBuilder gradingSystem(String gradingSystem) {
+        gradeValueBuilder.gradingSystem(gradingSystem);
+        return this;
+    }
+
+    public GradeBuilder textValue(String textValue) {
+        gradeValueBuilder.textValue(textValue);
+        return this;
+    }
+
+    public GradeBuilder numericValue(final Number numericValue) {
+        gradeValueBuilder.numericValue(numericValue);
+        return this;
     }
 
     public GradeBuilder timestamp(final ZonedDateTime timestamp) {
@@ -114,24 +120,18 @@ public class GradeBuilder {
         return this;
     }
 
-    public GradeBuilder numericValue(final Number numericValue) {
-        gradeValueBuilder.numericValue(numericValue);
-        return this;
-    }
-
-    public GradeBuilder textValue(String textValue) {
-        gradeValueBuilder.textValue(textValue);
-        return this;
-    }
-
-    public GradeBuilder gradingSystem(String gradingSystem) {
-        gradeValueBuilder.gradingSystem(gradingSystem);
-        return this;
-    }
-
     public Grade build() {
         Grade grade = new BasicGrade(gradeReferenceBuilder.build(), gradeValueBuilder.build(), timestamp, weight, references);
         clear();
         return grade;
+    }
+
+    public GradeBuilder clear() {
+        gradeReferenceBuilder.clear();
+        gradeValueBuilder.clear();
+        timestamp = ZonedDateTime.now();
+        references = new HashMap<>();
+        weight = BigDecimal.ONE;
+        return this;
     }
 }

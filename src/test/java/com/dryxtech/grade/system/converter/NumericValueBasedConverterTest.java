@@ -1,19 +1,20 @@
 package com.dryxtech.grade.system.converter;
 
-import com.dryxtech.grade.model.BasicGradeValue;
-import com.dryxtech.grade.util.GradeFileUtil;
 import com.dryxtech.grade.api.GradeConverter;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.control.GradeConstants;
+import com.dryxtech.grade.model.BasicGradeValue;
 import com.dryxtech.grade.system.GradingSystemRegistry;
+import com.dryxtech.grade.util.GradeFileUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NumericValueBasedConverterTest {
 

@@ -1,7 +1,7 @@
 package com.dryxtech.grade.model;
 
-import com.dryxtech.grade.util.IdentifierUtil;
 import com.dryxtech.grade.api.GradeReference;
+import com.dryxtech.grade.util.IdentifierUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,18 +20,6 @@ public class GradeReferenceBuilder {
     private String type;
     private String description;
     private Map<String, Object> extensions;
-
-    public static GradeReferenceBuilder builder() {
-        return new GradeReferenceBuilder(false);
-    }
-
-    public static GradeReferenceBuilder builder(boolean autoGenerateId) {
-        return new GradeReferenceBuilder(autoGenerateId);
-    }
-
-    public static GradeReferenceBuilder builder(GradeReference gradeReference) {
-        return new GradeReferenceBuilder(gradeReference);
-    }
 
     public GradeReferenceBuilder(boolean autoGenerateId) {
         this.autoGenerateId = autoGenerateId;
@@ -53,12 +41,16 @@ public class GradeReferenceBuilder {
         this.extensions = extensions;
     }
 
-    public GradeReferenceBuilder clear() {
-        id = null;
-        type = null;
-        description = null;
-        extensions = null;
-        return this;
+    public static GradeReferenceBuilder builder() {
+        return new GradeReferenceBuilder(false);
+    }
+
+    public static GradeReferenceBuilder builder(boolean autoGenerateId) {
+        return new GradeReferenceBuilder(autoGenerateId);
+    }
+
+    public static GradeReferenceBuilder builder(GradeReference gradeReference) {
+        return new GradeReferenceBuilder(gradeReference);
     }
 
     public GradeReferenceBuilder id(String id) {
@@ -101,5 +93,13 @@ public class GradeReferenceBuilder {
         GradeReference reference = new BasicGradeReference(id, type, description, extensions);
         clear();
         return reference;
+    }
+
+    public GradeReferenceBuilder clear() {
+        id = null;
+        type = null;
+        description = null;
+        extensions = null;
+        return this;
     }
 }

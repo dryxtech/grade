@@ -12,6 +12,7 @@ public interface ManagedGrade extends Grade {
 
     /**
      * Getter of management information.
+     *
      * @return management information
      */
     Map<String, Object> getManagement();

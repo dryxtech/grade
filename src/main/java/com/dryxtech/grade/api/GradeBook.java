@@ -14,18 +14,21 @@ public interface GradeBook<T extends Grade> {
 
     /**
      * Add a grade to the managed group.
+     *
      * @param grade to add
      */
     void record(T grade);
 
     /**
      * Add a collection of grades to the managed group.
+     *
      * @param grades to add
      */
     void record(Collection<T> grades);
 
     /**
      * Remove a grade from the managed group.
+     *
      * @param grade to remove
      * @return true if grade was found and removed; otherwise false as grade was not found
      */
@@ -33,6 +36,7 @@ public interface GradeBook<T extends Grade> {
 
     /**
      * Remove grades from the managed group.
+     *
      * @param search conditions to control what is removed
      * @return collection of grades that were removed
      */
@@ -40,6 +44,7 @@ public interface GradeBook<T extends Grade> {
 
     /**
      * Find grades from the managed group.
+     *
      * @param search conditions
      * @return collection of grades that were found based on search
      */
@@ -47,6 +52,7 @@ public interface GradeBook<T extends Grade> {
 
     /**
      * Find all grades from the managed group.
+     *
      * @return collection of all grades
      */
     Collection<T> findAll();

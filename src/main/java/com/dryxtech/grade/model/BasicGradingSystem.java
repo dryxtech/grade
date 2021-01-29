@@ -1,11 +1,11 @@
 package com.dryxtech.grade.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.dryxtech.grade.api.GradeValueRange;
 import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.api.PerformanceLevel;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -56,12 +56,6 @@ public class BasicGradingSystem implements GradingSystem {
         }
     }
 
-    protected void setRanges(Collection<GradeValueRange> ranges) {
-        this.ranges = new ArrayList<>(ranges);
-        this.rangesByTextValue = new HashMap<>();
-        ranges.forEach(range -> this.rangesByTextValue.put(range.getTextValue().toUpperCase(), range));
-    }
-
     @Override
     public String getId() {
         return id;
@@ -90,14 +84,6 @@ public class BasicGradingSystem implements GradingSystem {
     @Override
     public String getVariant() {
         return variant;
-    }
-
-    @Override
-    public Collection<GradeValueRange> getRanges() {
-        return ranges.stream().map(r -> new BasicGradeValueRange(r.getTextValue(),
-                r.getStartValue(), r.getEndValue(), r.getStartValueInclusive(), r.getEndValueInclusive(),
-                r.getPerformanceLevel().getLabel()))
-                .collect(Collectors.toList());
     }
 
     @Override
@@ -137,11 +123,30 @@ public class BasicGradingSystem implements GradingSystem {
         return Optional.empty();
     }
 
+    @Override
+    public Collection<GradeValueRange> getRanges() {
+        return ranges.stream().map(r -> new BasicGradeValueRange(r.getTextValue(),
+                r.getStartValue(), r.getEndValue(), r.getStartValueInclusive(), r.getEndValueInclusive(),
+                r.getPerformanceLevel().getLabel()))
+                .collect(Collectors.toList());
+    }
+
+    protected void setRanges(Collection<GradeValueRange> ranges) {
+        this.ranges = new ArrayList<>(ranges);
+        this.rangesByTextValue = new HashMap<>();
+        ranges.forEach(range -> this.rangesByTextValue.put(range.getTextValue().toUpperCase(), range));
+    }
+
     public Optional<GradeValueRange> getRange(String textValue) {
         if (Objects.nonNull(rangesByTextValue)) {
             return Optional.ofNullable(rangesByTextValue.get(textValue.toUpperCase()));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, category, type, name, variant, ranges);
     }
 
     @Override
@@ -156,11 +161,6 @@ public class BasicGradingSystem implements GradingSystem {
                 Objects.equals(name, that.name) &&
                 Objects.equals(variant, that.variant) &&
                 Objects.equals(ranges, that.ranges);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, description, category, type, name, variant, ranges);
     }
 
     @Override

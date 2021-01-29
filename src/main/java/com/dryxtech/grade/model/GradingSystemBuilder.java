@@ -23,10 +23,6 @@ public class GradingSystemBuilder {
     private String variant;
     private Collection<GradeValueRange> ranges;
 
-    public static GradingSystemBuilder builder() {
-        return new GradingSystemBuilder();
-    }
-
     public GradingSystemBuilder(final GradingSystem gradingSystem) throws IOException {
 
         this.id = gradingSystem.getId();
@@ -38,17 +34,11 @@ public class GradingSystemBuilder {
         this.ranges = gradingSystem.getRanges();
     }
 
-    public GradingSystemBuilder() {}
+    public GradingSystemBuilder() {
+    }
 
-    public GradingSystemBuilder clear() {
-        this.id = null;
-        this.description = null;
-        this.category = null;
-        this.type = null;
-        this.name = null;
-        this.variant = null;
-        this.ranges = null;
-        return this;
+    public static GradingSystemBuilder builder() {
+        return new GradingSystemBuilder();
     }
 
     public GradingSystemBuilder id(String id) {
@@ -93,5 +83,16 @@ public class GradingSystemBuilder {
                 .collect(Collectors.toList()));
         clear();
         return gradingSystem;
+    }
+
+    public GradingSystemBuilder clear() {
+        this.id = null;
+        this.description = null;
+        this.category = null;
+        this.type = null;
+        this.name = null;
+        this.variant = null;
+        this.ranges = null;
+        return this;
     }
 }

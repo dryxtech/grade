@@ -1,11 +1,11 @@
 package com.dryxtech.grade.util;
 
 import com.dryxtech.grade.GradeTesting;
+import com.dryxtech.grade.api.Grade;
+import com.dryxtech.grade.api.GradingSystem;
 import com.dryxtech.grade.control.GradeConstants;
 import com.dryxtech.grade.model.BasicGrade;
 import com.dryxtech.grade.system.ZGradingSystem;
-import com.dryxtech.grade.api.Grade;
-import com.dryxtech.grade.api.GradingSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

@@ -1,16 +1,16 @@
 package com.dryxtech.grade.util;
 
+import com.dryxtech.grade.api.Grade;
+import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.control.GradeConstants;
+import com.dryxtech.grade.model.BasicGrade;
+import com.dryxtech.grade.model.BasicGradingSystem;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.dryxtech.grade.model.BasicGrade;
-import com.dryxtech.grade.api.Grade;
-import com.dryxtech.grade.api.GradingSystem;
-import com.dryxtech.grade.control.GradeConstants;
-import com.dryxtech.grade.model.BasicGradingSystem;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 public final class GradeFileUtil {
 
     private static final ObjectMapper mapper = new ObjectMapper();
+
     static {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -56,7 +57,8 @@ public final class GradeFileUtil {
     }
 
     public static List<GradingSystem> loadGradingSystems(final File file) throws IOException {
-        return mapper.readValue(file, new TypeReference<List<BasicGradingSystem>>() { })
+        return mapper.readValue(file, new TypeReference<List<BasicGradingSystem>>() {
+        })
                 .stream().map(gradingSystem -> (GradingSystem) gradingSystem).collect(Collectors.toList());
     }
 
@@ -73,7 +75,8 @@ public final class GradeFileUtil {
     }
 
     public static List<Grade> loadGrades(final File file) throws IOException {
-        return mapper.readValue(file, new TypeReference<List<BasicGrade>>() { })
+        return mapper.readValue(file, new TypeReference<List<BasicGrade>>() {
+        })
                 .stream().map(grade -> (Grade) grade).collect(Collectors.toList());
     }
 
