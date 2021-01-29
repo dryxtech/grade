@@ -8,7 +8,6 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <name>grade</name>
-    <url>https://www.dryxtech.com</url>
 
     <issueManagement>
         <url>https://github.com/dryxtech/grade/issues</url>
