@@ -101,7 +101,8 @@ Java 1.8 or above
 #### Create a managed grade and record in a GradeBook
 
 ```
-    ManagedGrade managedGrade = new BasicManagedGrade(gpaGrade,Collections.singletonMap("organization","DRYXTECH"));
+    ManagedGrade managedGrade = new BasicManagedGrade(gpaGrade, 
+        Collections.singletonMap("organization","DRYXTECH"));
 
     GradeBook<ManagedGrade> gradeBook = new SimpleMemoryGradeBook<>();
     gradeBook.record(managedGrade);
@@ -133,7 +134,10 @@ Java 1.8 or above
 
     manager.setDefaultGradingSystem(manager.lookupSystem(STANDARD_PLUS_MINUS_ACADEMIC_SYSTEM));
 
-    manager.record(manager.getGradeBuilder(true).type("example-grade").gradeValue(manager.grade(100)).build());
+    manager.record(manager.getGradeBuilder(true)
+        .type("example-grade")
+        .gradeValue(manager.grade(100)).build()
+    );
 ```
 
 ### Grading Systems
