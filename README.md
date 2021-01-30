@@ -38,24 +38,24 @@ Java 1.8 or above
 
 #### Load a grading system from json file
 
-```java
+```
   GradingSystem gradingSystem = GradingSystemBuilder.builder(inputStream).build();
 ```
 
 #### Determine the grade value of a given numeric input
 
-```java
+```
   Grader<Number> grader = new NumberGrader(gradingSystem);
   GradeValue gradeValue = grader.grade(92.5);
 ```
 
 #### Create a grade
 
-```java
+```
   GradeBuilder gradeBuilder = GradeBuilder.builder(true); // auto-generate grade id
   GradeReferenceBuilder refBuilder = GradeReferenceBuilder.builder();
 
-  Grade examGrade=gradeBuilder
+  Grade examGrade = gradeBuilder
     .type("student-final-exam")
     .timestamp(ZonedDateTime.now())
     .gradeValue(gradeValue)
@@ -68,7 +68,7 @@ Java 1.8 or above
 
 #### Rollup weighted grades
 
-```java
+```
     Grader<Collection<Grade>> rollupGrader = new GradeWeightedAverageGrader(gradingSystem);
 
     GradeValue classGradeValue = rollupGrader.grade(Arrays.asList(
@@ -80,7 +80,7 @@ Java 1.8 or above
 
 #### Convert grade value to another grading system
 
-```java
+```
     GradingSystemRegistry registry = new GradingSystemRegistry();
     registry.registerSystem("gpa_grading_system",gpaGradingSystem);
 
@@ -100,7 +100,7 @@ Java 1.8 or above
 
 #### Create a managed grade and record in a GradeBook
 
-```java
+```
     ManagedGrade managedGrade = new BasicManagedGrade(gpaGrade,Collections.singletonMap("organization","DRYXTECH"));
 
     GradeBook<ManagedGrade> gradeBook = new SimpleMemoryGradeBook<>();
@@ -109,7 +109,7 @@ Java 1.8 or above
 
 #### Print the Top 10 GPAs in a GradeBook
 
-```java
+```
     Collection<ManagedGrade> allGpaGrades = gradeBook.find(mgrade->
         mgrade.getType().equals("student-gpa") &&
         mgrade.getManagement().get("organization").equals("DRYXTECH")
@@ -122,7 +122,7 @@ Java 1.8 or above
 
 #### Simple use of a grade manager to grade and record a value using a bundled grading system
 
-```java
+```
     GradeManager manager = new GradeManager(
         new GradingSystemRegistry(),
         new SimpleMemoryGradeBook<ManagedGrade>(),
