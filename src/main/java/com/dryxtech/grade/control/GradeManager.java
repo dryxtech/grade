@@ -298,7 +298,7 @@ public final class GradeManager {
      * @return grade value
      * @throws GradeException on any failure during the grading process
      */
-    public GradeValue grade(final Number value) throws GradeException {
+    public GradeValue grade(Number value) throws GradeException {
         return defaultGrader.grade(value);
     }
 
@@ -474,6 +474,15 @@ public final class GradeManager {
     }
 
     /**
+     * Getter of managed grade book
+     *
+     * @return grade book
+     */
+    public GradeBook<ManagedGrade> getGradeBook() {
+        return gradeBook;
+    }
+
+    /**
      * Record a grade in the grade book
      * Note: managementInfo will be determined by the manager
      *
@@ -484,12 +493,13 @@ public final class GradeManager {
     }
 
     /**
-     * Getter of managed grade book
+     * Record grades in the grade book
+     * Note: managementInfo will be determined by the manager
      *
-     * @return grade book
+     * @param grades grades to record
      */
-    public GradeBook<ManagedGrade> getGradeBook() {
-        return gradeBook;
+    public void record(Grade... grades) {
+        record(Arrays.asList(grades));
     }
 
     /**
@@ -543,6 +553,15 @@ public final class GradeManager {
      */
     public Collection<Grade> erase(final Predicate<ManagedGrade> search) {
         return new ArrayList<>(this.gradeBook.erase(search));
+    }
+
+    /**
+     * Erase all grades in grade book
+     *
+     * @return collection of grades erased
+     */
+    public Collection<Grade> eraseAll() {
+        return new ArrayList<>(this.gradeBook.eraseAll());
     }
 
     /**

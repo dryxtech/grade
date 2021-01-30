@@ -59,6 +59,13 @@ public interface GradeBook<T extends Grade> {
     Collection<T> erase(Predicate<T> search);
 
     /**
+     * Remove all grades from the managed group.
+     *
+     * @return collection of grades that were removed
+     */
+    Collection<T> eraseAll();
+
+    /**
      * Find grades from the managed group.
      *
      * @param search conditions

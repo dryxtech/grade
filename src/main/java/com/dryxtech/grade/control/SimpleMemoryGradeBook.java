@@ -125,6 +125,14 @@ public class SimpleMemoryGradeBook<T extends Grade> implements GradeBook<T> {
     }
 
     @Override
+    public synchronized Collection<T> eraseAll() {
+
+        List<T> grades = new ArrayList<>(this.grades);
+        this.grades.clear();
+        return grades;
+    }
+
+    @Override
     public synchronized Collection<T> find(final Predicate<T> search) {
 
         if (Objects.isNull(search)) {
