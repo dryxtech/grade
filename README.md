@@ -39,53 +39,53 @@ Java 1.8 or above
 #### Load a grading system from json file
 
 ```java
-    GradingSystem gradingSystem=GradingSystemBuilder.builder(inputStream).build();
+  GradingSystem gradingSystem = GradingSystemBuilder.builder(inputStream).build();
 ```
 
 #### Determine the grade value of a given numeric input
 
 ```java
-    Grader<Number> grader=new NumberGrader(gradingSystem);
-        GradeValue gradeValue=grader.grade(92.5);
+  Grader<Number> grader = new NumberGrader(gradingSystem);
+  GradeValue gradeValue = grader.grade(92.5);
 ```
 
 #### Create a grade
 
 ```java
-    GradeBuilder gradeBuilder=GradeBuilder.builder(true); // auto-generate grade id
-        GradeReferenceBuilder refBuilder=GradeReferenceBuilder.builder();
+  GradeBuilder gradeBuilder = GradeBuilder.builder(true); // auto-generate grade id
+  GradeReferenceBuilder refBuilder = GradeReferenceBuilder.builder();
 
-        Grade examGrade=gradeBuilder
-        .type("student-final-exam")
-        .timestamp(ZonedDateTime.now())
-        .gradeValue(gradeValue)
-        .extension("subject","BIO-111")
-        .extension("semester","Spring 2021")
-        .reference("tested",refBuilder.id("SID-00987654321").type("student").description("AJ Tivo").build())
-        .reference("test",refBuilder.id("TID-123456").type("exam").description("BIO-111 Final Exam").build())
-        .build();
+  Grade examGrade=gradeBuilder
+    .type("student-final-exam")
+    .timestamp(ZonedDateTime.now())
+    .gradeValue(gradeValue)
+    .extension("subject","BIO-111")
+    .extension("semester","Spring 2021")
+    .reference("tested",refBuilder.id("SID-00987654321").type("student").description("AJ Tivo").build())
+    .reference("test",refBuilder.id("TID-123456").type("exam").description("BIO-111 Final Exam").build())
+    .build();
 ```
 
 #### Rollup weighted grades
 
 ```java
-    Grader<Collection<Grade>>rollupGrader=new GradeWeightedAverageGrader(gradingSystem);
+    Grader<Collection<Grade>> rollupGrader = new GradeWeightedAverageGrader(gradingSystem);
 
-        GradeValue classGradeValue=rollupGrader.grade(Arrays.asList(
-        gradeBuilder.type("final-exam").gradeValue(examGrade).weight(.30).build(),
-        gradeBuilder.type("homework-average").gradeValue(grader.grade(100)).weight(.60).build(),
-        gradeBuilder.type("participation").gradeValue(grader.grade(50)).weight(.10).build())
-        );
+    GradeValue classGradeValue = rollupGrader.grade(Arrays.asList(
+      gradeBuilder.type("final-exam").gradeValue(examGrade).weight(.30).build(),
+      gradeBuilder.type("homework-average").gradeValue(grader.grade(100)).weight(.60).build(),
+      gradeBuilder.type("participation").gradeValue(grader.grade(50)).weight(.10).build())
+    );
 ```
 
 #### Convert grade value to another grading system
 
 ```java
-    GradingSystemRegistry registry=new GradingSystemRegistry();
-        registry.registerSystem("gpa_grading_system",gpaGradingSystem);
+    GradingSystemRegistry registry = new GradingSystemRegistry();
+    registry.registerSystem("gpa_grading_system",gpaGradingSystem);
 
-        GradeConverter converter=new TextValueBasedConverter(registry);
-        GradeValue gpaGradeValue=converter.convert(classGradeValue,"gpa_grading_system");
+    GradeConverter converter = new TextValueBasedConverter(registry);
+    GradeValue gpaGradeValue = converter.convert(classGradeValue,"gpa_grading_system");
 ```
 
 ### Advanced Uses
@@ -101,41 +101,39 @@ Java 1.8 or above
 #### Create a managed grade and record in a GradeBook
 
 ```java
-    ManagedGrade managedGrade=
-        new BasicManagedGrade(gpaGrade,Collections.singletonMap("organization","DRYXTECH"));
+    ManagedGrade managedGrade = new BasicManagedGrade(gpaGrade,Collections.singletonMap("organization","DRYXTECH"));
 
-        GradeBook<ManagedGrade> gradeBook=new SimpleMemoryGradeBook<>();
-        gradeBook.record(managedGrade);
+    GradeBook<ManagedGrade> gradeBook = new SimpleMemoryGradeBook<>();
+    gradeBook.record(managedGrade);
 ```
 
 #### Print the Top 10 GPAs in a GradeBook
 
 ```java
-    Collection<ManagedGrade> allGpaGrades=gradeBook.find(mgrade->
-        mgrade.getType().equals("student-gpa")&&
+    Collection<ManagedGrade> allGpaGrades = gradeBook.find(mgrade->
+        mgrade.getType().equals("student-gpa") &&
         mgrade.getManagement().get("organization").equals("DRYXTECH")
-        );
+    );
 
-        GradeMathUtil.rankGradesHiToLow(allGpaGrades).subList(0,10).forEach(gradeRank->{
-        System.out.println(gradeRank.getRank()+" "+gradeRank.getGrade().getReference("student"));
-        });
+    GradeMathUtil.rankGradesHiToLow(allGpaGrades).subList(0,10).forEach(gradeRank -> {
+        System.out.println(gradeRank.getRank() + " " + gradeRank.getGrade().getReference("student"));
+    });
 ```
 
 #### Simple use of a grade manager to grade and record a value using a bundled grading system
 
 ```java
-    GradeManager manager=new GradeManager(
+    GradeManager manager = new GradeManager(
         new GradingSystemRegistry(),
         new SimpleMemoryGradeBook<ManagedGrade>(),
         Collections.singletonMap("organization","DRYXTECH")
-        );
+    );
 
-        manager.loadBundledGradingSystems();
-        manager.setDefaultGradingSystem(manager.lookupSystem(STANDARD_PLUS_MINUS_ACADEMIC_SYSTEM));
+    manager.loadBundledGradingSystems();
 
-        manager.record(
-        manager.getGradeBuilder(true).type("example-grade").gradeValue(
-        manager.grade(100)).build());
+    manager.setDefaultGradingSystem(manager.lookupSystem(STANDARD_PLUS_MINUS_ACADEMIC_SYSTEM));
+
+    manager.record(manager.getGradeBuilder(true).type("example-grade").gradeValue(manager.grade(100)).build());
 ```
 
 ### Grading Systems
