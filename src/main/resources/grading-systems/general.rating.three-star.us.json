@@ -1,0 +1,34 @@
+{
+  "id": "general.rating.three-star.us",
+  "description": "A rating system using 3 stars",
+  "category": "general",
+  "type": "rating",
+  "name": "three-star",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "3-STAR",
+      "startValue": 2,
+      "startValueInclusive": false,
+      "endValue": 3,
+      "endValueInclusive": true,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "2-STAR",
+      "startValue": 1,
+      "startValueInclusive": false,
+      "endValue": 2,
+      "endValueInclusive": true,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "1-STAR",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": true,
+      "performanceLevel": "Low"
+    }
+  ]
+}

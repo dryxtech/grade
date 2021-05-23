@@ -1,0 +1,114 @@
+{
+  "id": "game.rating.chess.uscf",
+  "description": "The chess rating system used by US Chess Federation",
+  "category": "game",
+  "type": "rating",
+  "name": "chess",
+  "variant": "uscf",
+  "ranges": [
+    {
+      "textValue": "Senior master",
+      "startValue": 2400,
+      "startValueInclusive": true,
+      "endValue": 5000,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "National master",
+      "startValue": 2200,
+      "startValueInclusive": true,
+      "endValue": 2400,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "Expert",
+      "startValue": 2000,
+      "startValueInclusive": true,
+      "endValue": 2200,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "Class A",
+      "startValue": 1800,
+      "startValueInclusive": true,
+      "endValue": 2000,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "Class B",
+      "startValue": 1600,
+      "startValueInclusive": true,
+      "endValue": 1800,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "Class C",
+      "startValue": 1400,
+      "startValueInclusive": true,
+      "endValue": 1600,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Class D",
+      "startValue": 1200,
+      "startValueInclusive": true,
+      "endValue": 1400,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Class E",
+      "startValue": 1000,
+      "startValueInclusive": true,
+      "endValue": 1200,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "Class F",
+      "startValue": 800,
+      "startValueInclusive": true,
+      "endValue": 1000,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "Class G",
+      "startValue": 600,
+      "startValueInclusive": true,
+      "endValue": 800,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Class H",
+      "startValue": 400,
+      "startValueInclusive": true,
+      "endValue": 600,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Class I",
+      "startValue": 200,
+      "startValueInclusive": true,
+      "endValue": 400,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Class J",
+      "startValue": 100,
+      "startValueInclusive": true,
+      "endValue": 200,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

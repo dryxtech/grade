@@ -1,0 +1,98 @@
+{
+  "id": "game.rating.chess.elo",
+  "description": "The chess rating system invented by Arpad Elo",
+  "category": "game",
+  "type": "rating",
+  "name": "chess",
+  "variant": "elo",
+  "ranges": [
+    {
+      "textValue": "Super Grandmaster",
+      "startValue": 2700,
+      "startValueInclusive": true,
+      "endValue": 5000,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "Grandmaster",
+      "startValue": 2500,
+      "startValueInclusive": true,
+      "endValue": 2700,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "International Master",
+      "startValue": 2400,
+      "startValueInclusive": true,
+      "endValue": 2500,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "FIDO Master",
+      "startValue": 2300,
+      "startValueInclusive": true,
+      "endValue": 2400,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "FIDE Candidate Master",
+      "startValue": 2200,
+      "startValueInclusive": true,
+      "endValue": 2300,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "Candidate Master",
+      "startValue": 2000,
+      "startValueInclusive": true,
+      "endValue": 2200,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Class A",
+      "startValue": 1800,
+      "startValueInclusive": true,
+      "endValue": 2000,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Class B",
+      "startValue": 1600,
+      "startValueInclusive": true,
+      "endValue": 1800,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "Class C",
+      "startValue": 1400,
+      "startValueInclusive": true,
+      "endValue": 1600,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "Class D",
+      "startValue": 1200,
+      "startValueInclusive": true,
+      "endValue": 1400,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Novice",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 1200,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

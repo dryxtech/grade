@@ -1,0 +1,34 @@
+{
+  "id": "restaurant.rating.michelin.us",
+  "description": "A restaurant rating system using 3 stars for elite dining establishments",
+  "category": "restaurant",
+  "type": "rating",
+  "name": "michelin",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "3-STAR",
+      "startValue": 3,
+      "startValueInclusive": true,
+      "endValue": 3,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "2-STAR",
+      "startValue": 2,
+      "startValueInclusive": true,
+      "endValue": 3,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "1-STAR",
+      "startValue": 1,
+      "startValueInclusive": true,
+      "endValue": 2,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    }
+  ]
+}

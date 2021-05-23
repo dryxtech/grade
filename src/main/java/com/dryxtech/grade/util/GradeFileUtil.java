@@ -75,8 +75,7 @@ public final class GradeFileUtil {
 
     public static List<GradingSystem> loadGradingSystems(final File file) throws IOException {
         return mapper.readValue(file, new TypeReference<List<BasicGradingSystem>>() {
-        })
-                .stream().map(gradingSystem -> (GradingSystem) gradingSystem).collect(Collectors.toList());
+        }).stream().map(gradingSystem -> (GradingSystem) gradingSystem).collect(Collectors.toList());
     }
 
     public static GradingSystem loadGradingSystem(final File file) throws IOException {
@@ -93,8 +92,7 @@ public final class GradeFileUtil {
 
     public static List<Grade> loadGrades(final File file) throws IOException {
         return mapper.readValue(file, new TypeReference<List<BasicGrade>>() {
-        })
-                .stream().map(grade -> (Grade) grade).collect(Collectors.toList());
+        }).stream().map(grade -> (Grade) grade).collect(Collectors.toList());
     }
 
     public static Grade loadGrade(final File file) throws IOException {

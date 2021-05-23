@@ -1,0 +1,42 @@
+{
+  "id": "restaurant.rating.inspection.us",
+  "description": "A restaurant inspection rating system using letter grades A, B and C",
+  "category": "restaurant",
+  "type": "rating",
+  "name": "inspection",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "A+",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 2,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "A",
+      "startValue": 2,
+      "startValueInclusive": false,
+      "endValue": 13,
+      "endValueInclusive": true,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "B",
+      "startValue": 13,
+      "startValueInclusive": false,
+      "endValue": 27,
+      "endValueInclusive": true,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "C",
+      "startValue": 27,
+      "startValueInclusive": false,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

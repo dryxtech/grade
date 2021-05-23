@@ -1,0 +1,50 @@
+{
+  "id": "academic.percent.standard.jp",
+  "description": "A percent-based grading system for Japanese Academic Institutions consisting of five groups (AA,A,B,C,E)",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard",
+  "variant": "jp",
+  "ranges": [
+    {
+      "textValue": "AA",
+      "startValue": 90,
+      "startValueInclusive": true,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "A",
+      "startValue": 80,
+      "startValueInclusive": true,
+      "endValue": 90,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "B",
+      "startValue": 70,
+      "startValueInclusive": true,
+      "endValue": 80,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C",
+      "startValue": 60,
+      "startValueInclusive": true,
+      "endValue": 70,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "E",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 60,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

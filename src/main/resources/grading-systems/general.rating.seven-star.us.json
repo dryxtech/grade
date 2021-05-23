@@ -1,0 +1,66 @@
+{
+  "id": "general.rating.seven-star.us",
+  "description": "A rating system using 7 stars",
+  "category": "general",
+  "type": "rating",
+  "name": "seven-star",
+  "variant": "us",
+  "ranges": [
+    {
+      "textValue": "7-STAR",
+      "startValue": 6,
+      "startValueInclusive": false,
+      "endValue": 7,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "6-STAR",
+      "startValue": 5,
+      "startValueInclusive": false,
+      "endValue": 6,
+      "endValueInclusive": true,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "5-STAR",
+      "startValue": 4,
+      "startValueInclusive": false,
+      "endValue": 5,
+      "endValueInclusive": true,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "4-STAR",
+      "startValue": 3,
+      "startValueInclusive": false,
+      "endValue": 4,
+      "endValueInclusive": true,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "3-STAR",
+      "startValue": 2,
+      "startValueInclusive": false,
+      "endValue": 3,
+      "endValueInclusive": true,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "2-STAR",
+      "startValue": 1,
+      "startValueInclusive": false,
+      "endValue": 2,
+      "endValueInclusive": true,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "1-STAR",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 1,
+      "endValueInclusive": true,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

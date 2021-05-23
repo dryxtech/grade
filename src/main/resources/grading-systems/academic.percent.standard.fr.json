@@ -1,0 +1,74 @@
+{
+  "id": "academic.percent.standard.fr",
+  "description": "A percent-based grading system for French Academic Institutions",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard",
+  "variant": "fr",
+  "ranges": [
+    {
+      "textValue": "A",
+      "startValue": 14,
+      "startValueInclusive": true,
+      "endValue": 20,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "B+",
+      "startValue": 12,
+      "startValueInclusive": true,
+      "endValue": 14,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "B",
+      "startValue": 11,
+      "startValueInclusive": true,
+      "endValue": 12,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium High"
+    },
+    {
+      "textValue": "B-",
+      "startValue": 10.5,
+      "startValueInclusive": true,
+      "endValue": 11,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C",
+      "startValue": 10,
+      "startValueInclusive": true,
+      "endValue": 10.5,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "C-",
+      "startValue": 9,
+      "startValueInclusive": true,
+      "endValue": 10,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium Low"
+    },
+    {
+      "textValue": "D",
+      "startValue": 8,
+      "startValueInclusive": true,
+      "endValue": 9,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "F",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 8,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

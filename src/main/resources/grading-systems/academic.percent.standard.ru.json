@@ -1,0 +1,50 @@
+{
+  "id": "academic.percent.standard.us",
+  "description": "A percent-based grading system for Russian Academic Institutions consisting of five grades (5,4,3,2,1)",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard",
+  "variant": "ru",
+  "ranges": [
+    {
+      "textValue": "5 Otl",
+      "startValue": 90,
+      "startValueInclusive": true,
+      "endValue": 100,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "4 Khor",
+      "startValue": 76,
+      "startValueInclusive": true,
+      "endValue": 90,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "3 Ud",
+      "startValue": 60,
+      "startValueInclusive": true,
+      "endValue": 76,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "2 Nyeudovletvorìtelno",
+      "startValue": 0,
+      "startValueInclusive": false,
+      "endValue": 60,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "1",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 0,
+      "endValueInclusive": true,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}

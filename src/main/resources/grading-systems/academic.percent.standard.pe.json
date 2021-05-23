@@ -1,0 +1,50 @@
+{
+  "id": "academic.percent.standard.peru",
+  "description": "A percent-based grading system for Peru Academic Institutions",
+  "category": "academic",
+  "type": "percent",
+  "name": "standard",
+  "variant": "pe",
+  "ranges": [
+    {
+      "textValue": "Excelente",
+      "startValue": 14,
+      "startValueInclusive": true,
+      "endValue": 20,
+      "endValueInclusive": true,
+      "performanceLevel": "Top"
+    },
+    {
+      "textValue": "Muy bueno",
+      "startValue": 12,
+      "startValueInclusive": true,
+      "endValue": 14,
+      "endValueInclusive": false,
+      "performanceLevel": "High"
+    },
+    {
+      "textValue": "Aprobado",
+      "startValue": 11,
+      "startValueInclusive": true,
+      "endValue": 12,
+      "endValueInclusive": false,
+      "performanceLevel": "Medium"
+    },
+    {
+      "textValue": "Aplazado",
+      "startValue": 10,
+      "startValueInclusive": true,
+      "endValue": 11,
+      "endValueInclusive": false,
+      "performanceLevel": "Low"
+    },
+    {
+      "textValue": "Desaprobado",
+      "startValue": 0,
+      "startValueInclusive": true,
+      "endValue": 10,
+      "endValueInclusive": false,
+      "performanceLevel": "Bottom"
+    }
+  ]
+}
