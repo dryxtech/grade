@@ -20,21 +20,31 @@ import com.dryxtech.grade.api.GradeConverter;
 import com.dryxtech.grade.api.GradeException;
 import com.dryxtech.grade.api.GradeValue;
 import com.dryxtech.grade.api.GradingSystem;
+import com.dryxtech.grade.api.Question;
+import com.dryxtech.grade.api.TestException;
+import com.dryxtech.grade.api.TestScore;
+import com.dryxtech.grade.model.BasicQuestion;
+import com.dryxtech.grade.model.BasicQuestionValue;
+import com.dryxtech.grade.model.BasicTest;
+import com.dryxtech.grade.model.BasicTestSubmission;
 import com.dryxtech.grade.model.GradeBuilder;
 import com.dryxtech.grade.model.GradeReferenceBuilder;
 import com.dryxtech.grade.system.GradingSystemNotFoundException;
 import com.dryxtech.grade.system.GradingSystemRegistry;
 import com.dryxtech.grade.system.converter.BinaryToPercentConverter;
 import com.dryxtech.grade.util.GradeFileUtil;
+import com.dryxtech.grade.util.IdentifierUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +58,8 @@ public class SoftwareGradingIT {
     static Path sharedTempDir;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SoftwareGradingIT.class);
-    private GradeManager manager;
+    private GradeManager gradeManager;
+    private TestManager testManager;
 
     @Test
     public void testSoftwareGrading() {
@@ -57,7 +68,7 @@ public class SoftwareGradingIT {
             gradeYourSoftware();
             persistYourSoftwareGrade();
 
-        } catch (GradeException | IOException ex) {
+        } catch (GradeException | TestException | IOException ex) {
             fail("standard academic grading scenario test failed!", ex);
         }
     }
@@ -69,47 +80,66 @@ public class SoftwareGradingIT {
         managementInfo.put("division", "code-eagles");
 
         LOGGER.info("setup grade manager");
-        manager = new GradeManager(
+        gradeManager = new GradeManager(
                 new GradingSystemRegistry(),
                 new SimpleMemoryGradeBook<>(),
                 managementInfo
         );
 
-        assertEquals(managementInfo, manager.getManagementInformation());
+        assertEquals(managementInfo, gradeManager.getManagementInformation());
 
         // register standard-poor-to-excellent grading system as default
         GradingSystem gradingSystem = GradeFileUtil.loadBundledGradingSystem(
                 GradeConstants.STANDARD_POOR_TO_EXCELLENT_SYSTEM + GradeConstants.GRADING_SYSTEM_FILE_EXTENSION);
-        manager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
-        manager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
-        manager.setDefaultGradingSystem(gradingSystem);
+        gradeManager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
+        gradeManager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
+        gradeManager.setDefaultGradingSystem(gradingSystem);
 
-        assertEquals(gradingSystem, manager.lookupGradingSystem(gradingSystem.getId()));
+        assertEquals(gradingSystem, gradeManager.lookupGradingSystem(gradingSystem.getId()));
 
         // register pass fail system
         gradingSystem = GradeFileUtil.loadBundledGradingSystem(
                 GradeConstants.STANDARD_BINARY_PASS_FAIL_SYSTEM + GradeConstants.GRADING_SYSTEM_FILE_EXTENSION);
-        manager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
+        gradeManager.registerGradingSystem(gradingSystem.getId(), gradingSystem);
 
         // register converters
-        GradeConverter binaryToPercentConverter = new BinaryToPercentConverter(manager.getGradingSystemRegistry());
-        manager.registerConverter(GradeConstants.STANDARD_BINARY_PASS_FAIL_SYSTEM,
+        GradeConverter binaryToPercentConverter = new BinaryToPercentConverter(gradeManager.getGradingSystemRegistry());
+        gradeManager.registerConverter(GradeConstants.STANDARD_BINARY_PASS_FAIL_SYSTEM,
                 GradeConstants.STANDARD_POOR_TO_EXCELLENT_SYSTEM, binaryToPercentConverter);
 
+        testManager = new TestManager(managementInfo);
+        testManager.record(BasicTest.builder()
+                .id(IdentifierUtil.generateIdString())
+                .name("software-build-test")
+                .questions(Collections.singletonList(BasicQuestion.builder()
+                        .id(IdentifierUtil.generateIdString())
+                        .text("Did the build pass?")
+                        .values(Collections.singletonList(BasicQuestionValue.builder()
+                                .id(IdentifierUtil.generateIdString())
+                                .value("true")
+                                .build()))
+                        .build()))
+                .build());
     }
 
-    private void gradeYourSoftware() throws GradeException {
+    private void gradeYourSoftware() throws GradeException, TestException {
 
-        GradeValue codeBuilds = manager.grade(1, GradeConstants.STANDARD_BINARY_PASS_FAIL_SYSTEM);
-        GradeValue codeCoverage = manager.grade(81);
-        GradeValue codeSmell = manager.grade(70);
+        com.dryxtech.grade.api.Test test = testManager.find(t -> t.getName().equals("software-build-test")).stream().findFirst().get();
+        Map<Question, String> answers = Collections.singletonMap(test.getQuestions().get(0), "true");
+        TestScore score = testManager.score(test, BasicTestSubmission.builder()
+                .id(IdentifierUtil.generateIdString()).submittedAnswers(answers).build());
+        assertEquals(BigDecimal.ONE, score.getValue());
+
+        GradeValue codeBuilds = gradeManager.grade(score.getValue(), GradeConstants.STANDARD_BINARY_PASS_FAIL_SYSTEM);
+        GradeValue codeCoverage = gradeManager.grade(81);
+        GradeValue codeSmell = gradeManager.grade(70);
 
         // handles auto-conversion of codeBuilds value to default grading system
-        GradeValue average = manager.gradeRollup(Arrays.asList(codeBuilds, codeCoverage, codeSmell));
+        GradeValue average = gradeManager.gradeRollup(Arrays.asList(codeBuilds, codeCoverage, codeSmell));
 
         assertEquals(84, average.getNumericValue().setScale(0, RoundingMode.CEILING).intValue());
 
-        manager.record(GradeBuilder.builder(true)
+        gradeManager.record(GradeBuilder.builder(true)
                 .gradeValue(average)
                 .type("software-quality")
                 .description("your-application")
@@ -119,18 +149,18 @@ public class SoftwareGradingIT {
                 .reference("application", GradeReferenceBuilder.builder().id("123").type("application")
                         .description("your-application").build())
                 .build());
-        assertEquals(1, manager.findAll().size());
+        assertEquals(1, gradeManager.findAll().size());
     }
 
     private void persistYourSoftwareGrade() throws IOException {
 
         Path path = sharedTempDir.resolve("your-grades.json");
 
-        GradeFileUtil.saveGrades(path.toFile(), manager.find(grade ->
+        GradeFileUtil.saveGrades(path.toFile(), gradeManager.find(grade ->
                     grade.getType().equals("software-quality") && grade.getReference("application").isPresent()));
         assertTrue(path.toFile().exists());
 
-        manager.eraseAll();
-        assertEquals(0, manager.findAll().size());
+        gradeManager.eraseAll();
+        assertEquals(0, gradeManager.findAll().size());
     }
 }

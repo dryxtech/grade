@@ -21,6 +21,7 @@ import com.dryxtech.grade.api.Test;
 import com.dryxtech.grade.api.TestBook;
 import com.dryxtech.grade.api.TestException;
 import com.dryxtech.grade.api.TestScore;
+import com.dryxtech.grade.api.TestSubmission;
 import com.dryxtech.grade.api.Tester;
 import com.dryxtech.grade.model.BasicManagedTest;
 import com.dryxtech.grade.model.BasicTest;
@@ -54,7 +55,7 @@ public class TestManager {
      * @param managementInfo management information
      */
     public TestManager(Map<String, Object> managementInfo) {
-        this(new com.dryxtech.grade.control.SimpleMemoryTestBook<>(), managementInfo);
+        this(new SimpleMemoryTestBook<>(), managementInfo);
     }
 
     /**
@@ -89,8 +90,8 @@ public class TestManager {
      * @return test score
      * @throws TestException
      */
-    public TestScore score(BasicTest test, BasicTestSubmission testSubmission) throws TestException {
-        Tester<BasicTestSubmission> tester = new BasicTester(test);
+    public TestScore score(Test test, TestSubmission testSubmission) throws TestException {
+        Tester<TestSubmission> tester = new BasicTester<>(test);
         return tester.score(testSubmission);
     }
 

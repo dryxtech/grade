@@ -18,12 +18,13 @@ package com.dryxtech.grade.tester;
 
 import com.dryxtech.grade.api.Question;
 import com.dryxtech.grade.api.QuestionValue;
+import com.dryxtech.grade.api.Test;
 import com.dryxtech.grade.api.TestException;
 import com.dryxtech.grade.api.TestReference;
 import com.dryxtech.grade.api.TestScore;
+import com.dryxtech.grade.api.TestSubmission;
 import com.dryxtech.grade.api.Tester;
 import com.dryxtech.grade.model.BasicQuestionValue;
-import com.dryxtech.grade.model.BasicTest;
 import com.dryxtech.grade.model.BasicTestScore;
 import com.dryxtech.grade.model.BasicTestSubmission;
 import com.dryxtech.grade.util.IdentifierUtil;
@@ -40,25 +41,25 @@ import java.util.Objects;
  * @author Drew Griffin
  * @since 2021.2
  */
-public class BasicTester implements Tester<BasicTestSubmission> {
+public class BasicTester<T> implements Tester<TestSubmission> {
 
     private final static BasicQuestionValue DEFAULT_QUESTION_VALUE = BasicQuestionValue.builder()
             .id("default-question-value").value("").weight(BigDecimal.ZERO).build();
-    private final BasicTest test;
+    private final Test test;
     private final BigDecimal multiplier;
 
-    public BasicTester(BasicTest test) {
+    public BasicTester(Test test) {
         this(test, null);
     }
 
-    public BasicTester(BasicTest test, BigDecimal multiplier) {
+    public BasicTester(Test test, BigDecimal multiplier) {
         Objects.requireNonNull(test, "test cannot be null");
         this.test = test;
         this.multiplier = multiplier;
     }
 
     @Override
-    public TestScore score(BasicTestSubmission submission) throws TestException {
+    public TestScore score(TestSubmission submission) throws TestException {
 
         try {
             Objects.requireNonNull(submission, "test submission cannot be null");
